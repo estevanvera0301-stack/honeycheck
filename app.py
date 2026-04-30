@@ -9,7 +9,7 @@ from scipy.signal import find_peaks
 from scipy.integrate import trapezoid
 
 st.set_page_config(
-    page_title="HoneyCheck — Autenticidad de Miel DSC",
+    page_title="HoneyCheck — Autenticidad y Origen de Miel DSC",
     page_icon="🍯",
     layout="wide",
 )
@@ -19,51 +19,72 @@ st.markdown("""
     .resultado-real {
         background: linear-gradient(135deg, #1D9E75, #0F6E56);
         color: white; padding: 24px 32px; border-radius: 16px;
-        text-align: center; font-size: 28px; font-weight: bold; margin: 16px 0;
+        text-align: center; font-size: 26px; font-weight: bold; margin: 12px 0;
     }
     .resultado-adulterada {
         background: linear-gradient(135deg, #D85A30, #993C1D);
         color: white; padding: 24px 32px; border-radius: 16px;
-        text-align: center; font-size: 28px; font-weight: bold; margin: 16px 0;
+        text-align: center; font-size: 26px; font-weight: bold; margin: 12px 0;
     }
     .resultado-mezcla {
         background: linear-gradient(135deg, #7F77DD, #534AB7);
         color: white; padding: 24px 32px; border-radius: 16px;
-        text-align: center; font-size: 28px; font-weight: bold; margin: 16px 0;
+        text-align: center; font-size: 26px; font-weight: bold; margin: 12px 0;
+    }
+    .resultado-cafetero {
+        background: linear-gradient(135deg, #2471A3, #1A5276);
+        color: white; padding: 20px 28px; border-radius: 16px;
+        text-align: center; font-size: 22px; font-weight: bold; margin: 12px 0;
+    }
+    .resultado-orinoquia {
+        background: linear-gradient(135deg, #E67E22, #A04000);
+        color: white; padding: 20px 28px; border-radius: 16px;
+        text-align: center; font-size: 22px; font-weight: bold; margin: 12px 0;
     }
     .metric-card {
         background: white; border-radius: 12px; padding: 16px 20px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.07); text-align: center; margin: 8px 0;
     }
-    .metric-value { font-size: 26px; font-weight: bold; color: #1D9E75; }
-    .metric-label { font-size: 13px; color: #666; margin-top: 4px; }
+    .metric-value { font-size: 24px; font-weight: bold; color: #1D9E75; }
+    .metric-label { font-size: 12px; color: #666; margin-top: 4px; }
+    .nivel-badge {
+        background: #f0f0f0; border-radius: 8px; padding: 6px 14px;
+        font-size: 12px; color: #444; display: inline-block; margin: 4px 0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
+# Header
 st.markdown("""
-<div style="background:linear-gradient(135deg,#1D9E75,#0F6E56);padding:32px;
-border-radius:16px;color:white;text-align:center;margin-bottom:24px;">
-    <h1 style="margin:0;font-size:42px;">🍯 HoneyCheck</h1>
-    <p style="margin:8px 0 0;font-size:18px;opacity:0.9;">
-        Detección de adulteración de miel mediante análisis DSC y Machine Learning
+<div style="background:linear-gradient(135deg,#1D9E75,#0F6E56);padding:28px;
+border-radius:16px;color:white;text-align:center;margin-bottom:20px;">
+    <h1 style="margin:0;font-size:38px;">🍯 HoneyCheck</h1>
+    <p style="margin:8px 0 0;font-size:17px;opacity:0.9;">
+        Detección de adulteración y origen geográfico de miel mediante DSC y ML
     </p>
-    <p style="margin:4px 0 0;font-size:13px;opacity:0.7;">
-        SVM Lineal · Accuracy 98.39% · LOO-CV · 62 muestras
+    <p style="margin:4px 0 0;font-size:12px;opacity:0.7;">
+        Sistema jerárquico de dos niveles · Universidad del Quindío
     </p>
 </div>
 """, unsafe_allow_html=True)
 
+# Constantes
 T_MIN, T_MAX, N_PTS = -30.0, 190.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
-CLASES   = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
-COLORES  = ["#1D9E75", "#D85A30", "#7F77DD"]
+CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
+CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
+COLORES_AUTH = ["#1D9E75", "#D85A30", "#7F77DD"]
+COLORES_GEO  = ["#2471A3", "#E67E22"]
 
 @st.cache_resource
-def cargar_modelo():
+def cargar_modelos():
     base = os.path.dirname(__file__)
-    modelo = joblib.load(os.path.join(base, "modelo_svm.pkl"))
-    scaler = joblib.load(os.path.join(base, "scaler.pkl"))
-    return modelo, scaler
+    m_auth   = joblib.load(os.path.join(base, "modelo_svm_optimizado.pkl"))
+    sc_auth  = joblib.load(os.path.join(base, "scaler_B_final.pkl"))
+    m_geo    = joblib.load(os.path.join(base, "modelo_origen_geografico.pkl"))
+    sc_geo   = joblib.load(os.path.join(base, "scaler_geo_A.pkl"))
+    pca_geo  = joblib.load(os.path.join(base, "pca_geo.pkl"))
+    return m_auth, sc_auth, m_geo, sc_geo, pca_geo
 
 def leer_dsc(ruta):
     filas, iniciado = [], False
@@ -93,7 +114,7 @@ def extraer_features(dsc_curve, T=T_GRILLA):
     feats = {}
     feats["enthalpy_total"] = trapezoid(dsc_curve, T)
     for zona, (a, b) in [("low",(-30,30)),("mid",(30,100)),("high",(100,190))]:
-        mask = (T >= a) & (T <= b)
+        mask = (T>=a)&(T<=b)
         feats[f"enthalpy_{zona}"] = trapezoid(dsc_curve[mask], T[mask])
     feats["dsc_min"]        = np.min(dsc_curve)
     feats["dsc_min_temp"]   = T[np.argmin(dsc_curve)]
@@ -139,30 +160,42 @@ def graficar_termograma(dsc_curve, nombre, color):
 with st.sidebar:
     st.markdown("### ⚙️ Panel de control")
     st.markdown("---")
-    st.markdown("**Acerca del modelo**")
+    st.markdown("**Sistema jerárquico de 2 niveles**")
     st.markdown("""
-    - **Algoritmo:** SVM kernel lineal
-    - **Features:** 16 características termodinámicas
-    - **Validación:** Leave-One-Out CV
-    - **Dataset:** 62 muestras
-    - **Accuracy:** 98.39%
-    """)
+    <div style="margin:8px 0;">
+        <span style="color:#1D9E75;font-weight:bold;">● Nivel 1</span>
+        Autenticidad de la miel<br>
+        <small>SVM Lineal · Accuracy 98.39%</small>
+    </div>
+    <div style="margin:8px 0;">
+        <span style="color:#2471A3;font-weight:bold;">● Nivel 2</span>
+        Origen geográfico<br>
+        <small>SVM + PCA · Accuracy 82.00%</small>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("**Categorías detectables**")
-    for clase, color in zip(CLASES, COLORES):
+    for clase, color in zip(CLASES_AUTH, COLORES_AUTH):
         st.markdown(
-            f"<span style=\'color:{color};font-weight:bold;\'>● {clase}</span>",
+            f"<span style='color:{color};font-weight:bold;'>● {clase}</span>",
+            unsafe_allow_html=True)
+    st.markdown("**Si es miel auténtica:**")
+    for clase, color in zip(CLASES_GEO, COLORES_GEO):
+        st.markdown(
+            f"<span style='color:{color};font-weight:bold;'>  ↳ {clase}</span>",
             unsafe_allow_html=True)
     st.markdown("---")
-    st.markdown("Trabajo de tesis — Análisis de autenticidad de miel mediante DSC y ML")
+    st.markdown("Universidad del Quindío · Programa de Química")
 
+# Cargar modelos
 try:
-    modelo, scaler = cargar_modelo()
-    st.success("✅ Modelo cargado correctamente")
+    m_auth, sc_auth, m_geo, sc_geo, pca_geo = cargar_modelos()
+    st.success("✅ Modelos cargados correctamente (Nivel 1 + Nivel 2)")
 except Exception as e:
-    st.error(f"❌ Error cargando modelo: {e}")
+    st.error(f"❌ Error cargando modelos: {e}")
     st.stop()
 
+# Carga de archivos
 st.markdown("## 📂 Cargar termograma(s)")
 st.markdown("Sube archivos `.txt` exportados del NETZSCH DSC 214 Polyma.")
 
@@ -175,11 +208,12 @@ archivos = st.file_uploader(
 if not archivos:
     st.info("👆 Sube al menos un archivo .txt para comenzar el análisis.")
     st.markdown("---")
-    st.markdown("## 📊 Estadísticas del modelo")
+    st.markdown("## 📊 Rendimiento del sistema")
     col1, col2, col3, col4 = st.columns(4)
     for col, (val, label) in zip(
         [col1, col2, col3, col4],
-        [("98.39%","Accuracy"),("94.0%","F1-macro"),("62","Muestras"),("1/62","Errores")]
+        [("98.39%","Autenticidad"),("82.00%","Origen geográfico"),
+         ("62","Muestras entrenadas"),("p<0.001","Significancia")]
     ):
         with col:
             st.markdown(f"""
@@ -189,55 +223,106 @@ if not archivos:
             </div>""", unsafe_allow_html=True)
     st.stop()
 
+# Análisis
 st.markdown("---")
 st.markdown(f"## 🔬 Resultados — {len(archivos)} muestra(s)")
 
 for archivo in archivos:
     st.markdown(f"### 📄 {archivo.name}")
+
     with tempfile.NamedTemporaryFile(delete=False, suffix=".txt") as tmp:
         tmp.write(archivo.read())
         tmp_path = tmp.name
+
     try:
         df_raw     = leer_dsc(tmp_path)
         dsc_interp = interpolar(df_raw)
-        if dsc_interp is None:
-            st.error("⚠️ El archivo no cubre el rango de temperatura requerido.")
-            continue
-        feats  = extraer_features(dsc_interp)
-        X_feat = scaler.transform(np.array(list(feats.values())).reshape(1, -1))
-        pred   = modelo.predict(X_feat)[0]
-        probs  = modelo.predict_proba(X_feat)[0]
-        css    = ["resultado-real","resultado-adulterada","resultado-mezcla"][pred]
-        icono  = ["✅","⚠️","🔶"][pred]
 
-        st.markdown(f"""
-        <div class="{css}">{icono} {CLASES[pred]}</div>
-        """, unsafe_allow_html=True)
+        if dsc_interp is None:
+            st.error("⚠️ El archivo no cubre el rango requerido (-30 a 190 °C).")
+            continue
+
+        # ── NIVEL 1: Autenticidad ────────────────────────────
+        feats   = extraer_features(dsc_interp)
+        X_feat  = sc_auth.transform(
+            np.array(list(feats.values())).reshape(1, -1))
+        pred    = m_auth.predict(X_feat)[0]
+        probs   = m_auth.predict_proba(X_feat)[0]
+
+        st.markdown(
+            f"<div class='nivel-badge'>🔬 Nivel 1 — Autenticidad</div>",
+            unsafe_allow_html=True)
+
+        css   = ["resultado-real","resultado-adulterada","resultado-mezcla"][pred]
+        icono = ["✅","⚠️","🔶"][pred]
+        st.markdown(
+            f"<div class='{css}'>{icono} {CLASES_AUTH[pred]}</div>",
+            unsafe_allow_html=True)
 
         col_g, col_m = st.columns([2, 1])
         with col_g:
-            fig = graficar_termograma(dsc_interp, archivo.name, COLORES[pred])
+            fig = graficar_termograma(dsc_interp, archivo.name,
+                                      COLORES_AUTH[pred])
             st.pyplot(fig); plt.close()
+
         with col_m:
-            st.markdown("**Confianza del modelo**")
-            for cls, prob, col in zip(CLASES, probs, COLORES):
+            st.markdown("**Confianza — Nivel 1**")
+            for cls, prob, col in zip(CLASES_AUTH, probs, COLORES_AUTH):
                 st.markdown(f"""
                 <div style="margin:6px 0;">
                     <span style="color:{col};font-weight:bold;">{cls}</span>
-                    <div style="background:#eee;border-radius:8px;height:10px;margin-top:3px;">
+                    <div style="background:#eee;border-radius:8px;
+                         height:10px;margin-top:3px;">
                         <div style="background:{col};width:{prob*100:.1f}%;
                              height:10px;border-radius:8px;"></div>
                     </div>
                     <span style="font-size:12px;color:#555;">{prob*100:.1f}%</span>
                 </div>""", unsafe_allow_html=True)
+
             st.markdown("---")
             st.markdown("**Features clave**")
             st.markdown(f"- dsc_max: `{feats['dsc_max']:.4f}` mW/mg")
             st.markdown(f"- dsc_slope_mean: `{feats['dsc_slope_mean']:.6f}`")
             st.markdown(f"- n_picos: `{int(feats['n_picos'])}`")
             st.markdown(f"- onset_temp: `{feats['onset_temp']:.2f}` °C")
+
+        # ── NIVEL 2: Origen geográfico (solo si es miel) ─────
+        if pred == 0:
+            st.markdown("---")
+            st.markdown(
+                "<div class='nivel-badge'>🗺️ Nivel 2 — Origen geográfico</div>",
+                unsafe_allow_html=True)
+
+            X_norm   = sc_geo.transform(dsc_interp.reshape(1, -1))
+            X_pca    = pca_geo.transform(X_norm)
+            pred_geo = m_geo.predict(X_pca)[0]
+            prob_geo = m_geo.predict_proba(X_pca)[0]
+
+            css_geo   = ["resultado-cafetero","resultado-orinoquia"][pred_geo]
+            icono_geo = ["🟦","🟠"][pred_geo]
+            st.markdown(
+                f"<div class='{css_geo}'>{icono_geo} {CLASES_GEO[pred_geo]}</div>",
+                unsafe_allow_html=True)
+
+            st.markdown("**Confianza — Nivel 2**")
+            col_g1, col_g2 = st.columns(2)
+            for col, cls, prob, color in zip(
+                [col_g1, col_g2], CLASES_GEO, prob_geo, COLORES_GEO
+            ):
+                with col:
+                    st.markdown(f"""
+                    <div style="text-align:center;padding:16px;background:#f8f8f8;
+                         border-radius:12px;border-left:4px solid {color};">
+                        <div style="color:{color};font-weight:bold;
+                             font-size:15px;">{cls}</div>
+                        <div style="font-size:28px;font-weight:bold;
+                             color:{color};margin-top:6px;">
+                             {prob*100:.1f}%</div>
+                    </div>""", unsafe_allow_html=True)
+
     except Exception as e:
-        st.error(f"Error: {e}")
+        st.error(f"Error procesando {archivo.name}: {e}")
     finally:
         os.unlink(tmp_path)
+
     st.markdown("---")
