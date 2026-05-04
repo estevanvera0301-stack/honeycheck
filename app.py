@@ -12,117 +12,129 @@ st.set_page_config(
     page_title="HoneyCheck — Pureza y Origen",
     page_icon="🍯",
     layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# --- INYECCIÓN DE CSS PARA EL TEMA "WAXY, GOLDEN & PURE" ---
+# --- INYECCIÓN DE CSS: ESTILO SAAS PREMIUM ---
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
-    /* Fondo principal crema suave (cera de abejas) */
+    /* Fondo principal: Blanco/Crema ultimamente suave */
     .stApp {
-        background-color: #FBF6EA;
-        color: #3E2723;
-        font-family: 'Open Sans', sans-serif;
+        background-color: #FCFAFA;
+        color: #2B1D14;
+        font-family: 'Inter', sans-serif;
     }
     
-    /* Barra lateral estilo panal ámbar oscuro */
+    /* Eliminar el padding superior excesivo de Streamlit */
+    .block-container {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* BARRA LATERAL: Tono chocolate oscuro/carbón para alto contraste premium */
     [data-testid="stSidebar"] {
-        background-color: #C08A3E;
-        color: #FBF6EA;
+        background-color: #1E1511;
+        color: #F8F5F0;
     }
     [data-testid="stSidebar"] * {
+        font-family: 'Inter', sans-serif;
+    }
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
+        color: #D4AF37 !important;
         font-family: 'Montserrat', sans-serif;
     }
     
-    /* Títulos y tipografía global */
+    /* Títulos globales */
     h1, h2, h3 {
         font-family: 'Montserrat', sans-serif;
-        color: #3E2723;
+        color: #1E1511;
     }
     
-    /* Zona de carga de archivos (Dropzone) estilo orgánico */
+    /* ZONA DE CARGA DE ARCHIVOS DOMADA */
     [data-testid="stFileUploadDropzone"] {
-        background-color: #FFFDF7;
-        border: 2px dashed #D4AF37;
-        border-radius: 20px;
-        box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.1);
-        padding: 30px;
+        background-color: #FFFFFF !important;
+        border: 2px dashed #D4AF37 !important;
+        border-radius: 12px !important;
+        padding: 40px !important;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
     [data-testid="stFileUploadDropzone"]:hover {
-        border-color: #B8860B;
-        background-color: #FFF9E6;
-    }
-
-    /* Clases de resultados (Rediseñadas con la nueva paleta) */
-    .resultado-real {
-        background: linear-gradient(135deg, #6B8E23, #556B2F); /* Verde Botánico */
-        color: white; padding: 24px 32px; border-radius: 16px;
-        text-align: center; font-size: 26px; font-weight: bold; margin: 12px 0;
-        box-shadow: 0 4px 15px rgba(107, 142, 35, 0.3);
-        font-family: 'Montserrat', sans-serif;
-    }
-    .resultado-adulterada {
-        background: linear-gradient(135deg, #D96C06, #A64B00); /* Bronce / Naranja quemado */
-        color: white; padding: 24px 32px; border-radius: 16px;
-        text-align: center; font-size: 26px; font-weight: bold; margin: 12px 0;
-        box-shadow: 0 4px 15px rgba(217, 108, 6, 0.3);
-        font-family: 'Montserrat', sans-serif;
-    }
-    .resultado-mezcla {
-        background: linear-gradient(135deg, #C29B0C, #997A00); /* Ámbar oscuro */
-        color: white; padding: 24px 32px; border-radius: 16px;
-        text-align: center; font-size: 26px; font-weight: bold; margin: 12px 0;
-        box-shadow: 0 4px 15px rgba(194, 155, 12, 0.3);
-        font-family: 'Montserrat', sans-serif;
-    }
-    .resultado-cafetero {
-        background: linear-gradient(135deg, #8B5A2B, #6B4226); /* Marrón tierra / Café */
-        color: white; padding: 20px 28px; border-radius: 16px;
-        text-align: center; font-size: 22px; font-weight: bold; margin: 12px 0;
-        font-family: 'Montserrat', sans-serif;
-    }
-    .resultado-orinoquia {
-        background: linear-gradient(135deg, #CD853F, #8B4513); /* Marrón claro / Sabana */
-        color: white; padding: 20px 28px; border-radius: 16px;
-        text-align: center; font-size: 22px; font-weight: bold; margin: 12px 0;
-        font-family: 'Montserrat', sans-serif;
-    }
-    .metric-card {
-        background: #FFFDF7; border-radius: 16px; padding: 16px 20px;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.04); text-align: center; margin: 8px 0;
-    }
-    .metric-value { font-size: 26px; font-weight: bold; color: #B8860B; font-family: 'Montserrat', sans-serif; }
-    .metric-label { font-size: 13px; color: #555; margin-top: 4px; font-weight: 600;}
-    .nivel-badge {
-        background: #F4E8C1; border-radius: 12px; padding: 8px 16px;
-        font-size: 13px; color: #3E2723; display: inline-block; margin: 4px 0;
-        font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border-color: #B8860B !important;
+        background-color: #FFFDF5 !important;
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
     }
     
-    /* Estilo del recuadro de éxito */
-    .st-emotion-cache-1kyxreq {
-        background-color: #EEF4EB;
-        border: 2px solid #8FBC8F;
-        color: #2F4F4F;
+    /* ALERTAS DE STREAMLIT DOMADAS (Quitar azules y verdes por defecto) */
+    [data-testid="stAlert"] {
+        background-color: #FFFFFF !important;
+        border: 1px solid #EAE1D3 !important;
+        border-left: 4px solid #D4AF37 !important;
+        border-radius: 8px !important;
+        color: #2B1D14 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    /* Tarjetas de métricas superiores */
+    .metric-card {
+        background: #FFFFFF; 
+        border-radius: 12px; 
+        padding: 20px;
+        border: 1px solid rgba(0,0,0,0.04);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.03); 
+        text-align: center; 
+        margin: 8px 0;
+        transition: transform 0.2s;
+    }
+    .metric-card:hover {
+        transform: translateY(-2px);
+    }
+    .metric-value { font-size: 28px; font-weight: 700; color: #D4AF37; font-family: 'Montserrat', sans-serif; }
+    .metric-label { font-size: 13px; color: #8C827A; margin-top: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;}
+    
+    /* Clases de resultados (Estilo limpio) */
+    .resultado-real {
+        background: linear-gradient(135deg, #4A7C59, #3A6347);
+        color: white; padding: 20px 24px; border-radius: 12px;
+        text-align: center; font-size: 24px; font-weight: 600; margin: 12px 0;
+        box-shadow: 0 10px 20px rgba(74, 124, 89, 0.2);
+    }
+    .resultado-adulterada {
+        background: linear-gradient(135deg, #C25953, #9E4641);
+        color: white; padding: 20px 24px; border-radius: 12px;
+        text-align: center; font-size: 24px; font-weight: 600; margin: 12px 0;
+        box-shadow: 0 10px 20px rgba(194, 89, 83, 0.2);
+    }
+    .resultado-mezcla {
+        background: linear-gradient(135deg, #D4AF37, #B8860B);
+        color: white; padding: 20px 24px; border-radius: 12px;
+        text-align: center; font-size: 24px; font-weight: 600; margin: 12px 0;
+        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    }
+    .nivel-badge {
+        background: #F4EFE6; border-radius: 20px; padding: 6px 16px;
+        font-size: 12px; color: #6B5E55; display: inline-block; margin: 8px 0;
+        font-weight: 600; border: 1px solid #EAE1D3; text-transform: uppercase; letter-spacing: 1px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# --- HEADER PREMIUM ---
+# --- HEADER PREMIUM SAAS ---
 st.markdown("""
-<div style="background:linear-gradient(135deg, #FFD166, #D4AF37); padding:32px;
-border-radius:24px; color:#3E2723; text-align:center; margin-bottom:24px;
-box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2); border: 2px solid rgba(255,255,255,0.4);">
-    <h1 style="margin:0; font-size:46px; font-family: 'Montserrat', sans-serif; font-weight: 700;">🍯 HoneyCheck</h1>
-    <p style="margin:12px 0 0; font-size:18px; font-weight: 600; color: #4A3628;">
-        Detección de adulteración y origen geográfico de miel mediante DSC y ML
+<div style="background: white; padding: 40px 32px; border-radius: 16px; 
+     box-shadow: 0 10px 40px rgba(0,0,0,0.04); text-align: center; margin-bottom: 32px;
+     border-top: 5px solid #D4AF37;">
+    <h1 style="color: #1E1511; font-family: 'Montserrat', sans-serif; font-size: 42px; margin: 0 0 8px 0; font-weight: 700;">
+        🍯 HoneyCheck
+    </h1>
+    <p style="color: #6B5E55; font-size: 18px; font-weight: 500; margin: 0;">
+        Detección de adulteración y origen geográfico mediante DSC y ML
     </p>
-    <p style="margin:6px 0 0; font-size:14px; opacity:0.8;">
-        Sistema jerárquico de dos niveles · Universidad del Quindío
-    </p>
+    <div style="margin-top: 16px; display: inline-block; background: #FAF7F2; padding: 6px 16px; border-radius: 20px; font-size: 12px; color: #8C827A; font-weight: 500;">
+        Universidad del Quindío · Sistema Jerárquico V2.0
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -131,18 +143,22 @@ T_MIN, T_MAX, N_PTS = -30.0, 190.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
 CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
 CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
-COLORES_AUTH = ["#6B8E23", "#D96C06", "#C29B0C"] # Verde botánico, Bronce, Ámbar
+COLORES_AUTH = ["#4A7C59", "#C25953", "#D4AF37"] 
 COLORES_GEO  = ["#8B5A2B", "#CD853F"]
 
 @st.cache_resource
 def cargar_modelos():
     base = os.path.dirname(__file__)
-    m_auth   = joblib.load(os.path.join(base, "modelo_svm_optimizado.pkl"))
-    sc_auth  = joblib.load(os.path.join(base, "scaler_B_final.pkl"))
-    m_geo    = joblib.load(os.path.join(base, "modelo_origen_geografico.pkl"))
-    sc_geo   = joblib.load(os.path.join(base, "scaler_geo_A.pkl"))
-    pca_geo  = joblib.load(os.path.join(base, "pca_geo.pkl"))
-    return m_auth, sc_auth, m_geo, sc_geo, pca_geo
+    # Se recomienda usar try-except interno para no frenar la UI si faltan archivos en pruebas
+    try:
+        m_auth   = joblib.load(os.path.join(base, "modelo_svm_optimizado.pkl"))
+        sc_auth  = joblib.load(os.path.join(base, "scaler_B_final.pkl"))
+        m_geo    = joblib.load(os.path.join(base, "modelo_origen_geografico.pkl"))
+        sc_geo   = joblib.load(os.path.join(base, "scaler_geo_A.pkl"))
+        pca_geo  = joblib.load(os.path.join(base, "pca_geo.pkl"))
+        return m_auth, sc_auth, m_geo, sc_geo, pca_geo
+    except:
+        return None, None, None, None, None
 
 def leer_dsc(ruta):
     filas, iniciado = [], False
@@ -198,91 +214,95 @@ def extraer_features(dsc_curve, T=T_GRILLA):
     return feats
 
 def graficar_termograma(dsc_curve, nombre, color):
-    # Configuración de fuente y legibilidad
+    # Configuración estricta de gráfica: Arial, tamaño 12, centrado, SIN título.
     plt.rcParams.update({'font.family': 'sans-serif'})
     plt.rcParams['font.sans-serif'] = ['Arial']
     plt.rcParams.update({'font.size': 12})
     
     fig, ax = plt.subplots(figsize=(10, 4))
     ax.plot(T_GRILLA, dsc_curve, color=color, linewidth=2.0, label=nombre)
-    ax.fill_between(T_GRILLA, dsc_curve, alpha=0.1, color=color)
-    ax.axhline(0, color="#888888", linewidth=0.8, linestyle="--")
+    ax.fill_between(T_GRILLA, dsc_curve, alpha=0.05, color=color)
+    ax.axhline(0, color="#CCCCCC", linewidth=1.0, linestyle="--")
     
-    # Zonas coloreadas con tonos cálidos
-    for a, b, c, et in [(-30,30,"#A8D0E6","Fusión agua/azúcares"),
-                         (30,100,"#F8E9A1","Transición térmica"),
-                         (100,190,"#F76C6C","Caramelización")]:
-        ax.axvspan(a, b, alpha=0.15, color=c, label=et)
+    # Zonas de transición sutiles
+    ax.axvspan(-30, 30, alpha=0.08, color="#8CA6B1", label="Fusión")
+    ax.axvspan(30, 100, alpha=0.08, color="#D4AF37", label="Transición")
+    ax.axvspan(100, 190, alpha=0.08, color="#C25953", label="Caramelización")
         
-    ax.set_xlabel("Temperatura (°C)", fontsize=12, fontweight='bold', color="#3E2723")
-    ax.set_ylabel("DSC (mW/mg)", fontsize=12, fontweight='bold', color="#3E2723")
+    ax.set_xlabel("Temperatura (°C)", fontsize=12)
+    ax.set_ylabel("DSC (mW/mg)", fontsize=12)
     
-    # Título eliminado para exportación limpia
+    # Título omitido intencionalmente para la exportación manual al documento.
     
-    ax.legend(fontsize=12, loc="upper left", frameon=True, facecolor='#FBF6EA', edgecolor='#D4AF37')
-    ax.grid(True, alpha=0.3, color="#D4AF37", linestyle=":")
+    ax.legend(fontsize=12, loc="upper left", frameon=False)
+    ax.grid(True, alpha=0.3, color="#EAE1D3", linestyle="-")
+    
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_color('#8C827A')
+    ax.spines['bottom'].set_color('#8C827A')
     
     plt.tight_layout()
     return fig
 
-# --- BARRA LATERAL TEMÁTICA ---
+# --- BARRA LATERAL (MODO OSCURO PREMIUM) ---
 with st.sidebar:
-    st.markdown("### 🏵️ Panel de control")
-    st.markdown("---")
-    st.markdown("**Sistema jerárquico**")
+    st.markdown("<h3 style='margin-bottom: 20px;'>⚙️ Panel de Control</h3>", unsafe_allow_html=True)
+    
     st.markdown("""
-    <div style="margin:8px 0; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;">
-        <span style="color:#FFF;font-weight:bold;">💠 Nivel 1</span><br>
-        Autenticidad de la miel<br>
-        <small style="color:#EEE;">SVM Lineal · Accuracy 98.39%</small>
-    </div>
-    <div style="margin:8px 0; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;">
-        <span style="color:#FFF;font-weight:bold;">💠 Nivel 2</span><br>
-        Origen geográfico<br>
-        <small style="color:#EEE;">SVM + PCA · Accuracy 82.00%</small>
+    <div style="margin-bottom: 24px;">
+        <div style="margin:8px 0; padding: 12px 16px; background: rgba(255,255,255,0.03); border-left: 3px solid #D4AF37; border-radius: 0 8px 8px 0;">
+            <span style="color:#D4AF37; font-weight:700; font-size: 11px; text-transform:uppercase; letter-spacing:1px;">Nivel 1</span><br>
+            <span style="color:#FFF; font-size: 15px; font-weight: 500;">Autenticidad</span><br>
+            <span style="color:#8C827A; font-size: 12px;">SVM Lineal · Acc 98.39%</span>
+        </div>
+        <div style="margin:8px 0; padding: 12px 16px; background: rgba(255,255,255,0.03); border-left: 3px solid #D4AF37; border-radius: 0 8px 8px 0;">
+            <span style="color:#D4AF37; font-weight:700; font-size: 11px; text-transform:uppercase; letter-spacing:1px;">Nivel 2</span><br>
+            <span style="color:#FFF; font-size: 15px; font-weight: 500;">Origen Geográfico</span><br>
+            <span style="color:#8C827A; font-size: 12px;">SVM+PCA · Acc 82.00%</span>
+        </div>
     </div>
     """, unsafe_allow_html=True)
-    st.markdown("---")
-    st.markdown("**Sellos de Categoría**")
+    
+    st.markdown("<p style='color:#8C827A; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:1px;'>Clases Detectables</p>", unsafe_allow_html=True)
     for clase, color in zip(CLASES_AUTH, COLORES_AUTH):
         st.markdown(
-            f"<div><span style='color:{color};font-size:18px;'>●</span> <span style='font-weight:600;'>{clase}</span></div>",
+            f"<div style='margin-bottom:6px;'><span style='color:{color};font-size:14px;'>■</span> <span style='font-size:14px; font-weight:500; color:#E0DCD3;'>{clase}</span></div>",
             unsafe_allow_html=True)
-    st.markdown("<br>**Mieles Auténticas:**", unsafe_allow_html=True)
+            
+    st.markdown("<div style='margin-top:16px;'><span style='color:#8C827A; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:1px;'>Orígenes (Miel Auténtica)</span></div>", unsafe_allow_html=True)
     for clase, color in zip(CLASES_GEO, COLORES_GEO):
         st.markdown(
-            f"<div style='padding-left:15px;'><span style='color:{color};font-size:18px;'>●</span> <span style='font-weight:600;'>{clase}</span></div>",
+            f"<div style='margin-bottom:6px; padding-left:10px;'><span style='color:{color};font-size:14px;'>■</span> <span style='font-size:14px; font-weight:500; color:#E0DCD3;'>{clase}</span></div>",
             unsafe_allow_html=True)
-    st.markdown("---")
-    st.markdown("<div style='text-align:center; font-size:12px; opacity:0.8;'>Universidad del Quindío<br>Programa de Química</div>", unsafe_allow_html=True)
 
 # Cargar modelos
-try:
-    m_auth, sc_auth, m_geo, sc_geo, pca_geo = cargar_modelos()
-    st.success("🏵️ Modelos cargados correctamente. Entorno listo.")
-except Exception as e:
-    st.error(f"❌ Error cargando modelos: {e}")
-    st.stop()
+m_auth, sc_auth, m_geo, sc_geo, pca_geo = cargar_modelos()
+if m_auth is not None:
+    st.success("Sistemas jerárquicos calibrados. Entorno de análisis listo.")
+else:
+    st.warning("Modelos no encontrados en el directorio. La interfaz operará en modo de demostración visual.")
 
 # Carga de archivos
-st.markdown("<h2 style='color:#B8860B;'>🗂️ Cargar termograma(s)</h2>", unsafe_allow_html=True)
-st.markdown("<p style='color:#555;'>Sube archivos <code>.txt</code> exportados del NETZSCH DSC 214 Polyma.</p>", unsafe_allow_html=True)
+st.markdown("<h2 style='font-size: 24px; margin-bottom: 16px;'>📁 Carga de Termogramas</h2>", unsafe_allow_html=True)
 
 archivos = st.file_uploader(
-    "Selecciona archivos DSC",
+    "Archivos .txt generados por NETZSCH DSC 214 Polyma",
     type=["txt"],
     accept_multiple_files=True,
+    label_visibility="collapsed"
 )
 
 if not archivos:
-    st.info("🐝 Sube al menos un archivo .txt para comenzar el análisis en el laboratorio.")
-    st.markdown("---")
-    st.markdown("<h2 style='color:#B8860B;'>📊 Rendimiento del sistema</h2>", unsafe_allow_html=True)
+    st.info("El sistema está a la espera de muestras. Seleccione o arrastre archivos .txt para iniciar el procesamiento.")
+    
+    st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
+    
     col1, col2, col3, col4 = st.columns(4)
     for col, (val, label) in zip(
         [col1, col2, col3, col4],
-        [("98.39%","Autenticidad"),("82.00%","Origen geográfico"),
-         ("62","Muestras entrenadas"),("p<0.001","Significancia")]
+        [("98.39%","Precisión Autenticidad"),("82.00%","Precisión Origen"),
+         ("62","Muestras Base"),("p<0.001","Confianza Estadística")]
     ):
         with col:
             st.markdown(f"""
@@ -293,11 +313,11 @@ if not archivos:
     st.stop()
 
 # Análisis
-st.markdown("---")
-st.markdown(f"<h2 style='color:#B8860B;'>🔬 Resultados de Pureza — {len(archivos)} muestra(s)</h2>", unsafe_allow_html=True)
+st.markdown("<div style='height: 30px;'></div>", unsafe_allow_html=True)
+st.markdown(f"<h2 style='font-size: 24px; border-bottom: 2px solid #EAE1D3; padding-bottom: 10px;'>🔬 Informe Analítico ({len(archivos)} muestras)</h2>", unsafe_allow_html=True)
 
 for archivo in archivos:
-    st.markdown(f"### 📄 {archivo.name}")
+    st.markdown(f"<h3 style='font-size: 18px; margin-top: 30px; color: #6B5E55;'>Muestra: {archivo.name}</h3>", unsafe_allow_html=True)
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".txt") as tmp:
         tmp.write(archivo.read())
@@ -308,84 +328,78 @@ for archivo in archivos:
         dsc_interp = interpolar(df_raw)
 
         if dsc_interp is None:
-            st.error("⚠️ El archivo no cubre el rango requerido (-30 a 190 °C).")
+            st.error(f"El archivo {archivo.name} no contiene el espectro térmico completo requerido (-30 a 190 °C).")
             continue
+
+        if m_auth is None:
+            continue # Evitar error si los modelos no están
 
         # ── NIVEL 1: Autenticidad ────────────────────────────
         feats   = extraer_features(dsc_interp)
-        X_feat  = sc_auth.transform(
-            np.array(list(feats.values())).reshape(1, -1))
+        X_feat  = sc_auth.transform(np.array(list(feats.values())).reshape(1, -1))
         pred    = m_auth.predict(X_feat)[0]
         probs   = m_auth.predict_proba(X_feat)[0]
 
-        st.markdown(
-            f"<div class='nivel-badge'>🧪 Nivel 1 — Evaluación de Autenticidad</div>",
-            unsafe_allow_html=True)
+        st.markdown("<div class='nivel-badge'>Fase 1: Evaluación de Autenticidad</div>", unsafe_allow_html=True)
 
         css   = ["resultado-real","resultado-adulterada","resultado-mezcla"][pred]
-        icono = ["🌿","⚠️","🔶"][pred]
-        st.markdown(
-            f"<div class='{css}'>{icono} {CLASES_AUTH[pred]}</div>",
-            unsafe_allow_html=True)
+        icono = ["✓","!","○"][pred]
+        st.markdown(f"<div class='{css}'>{CLASES_AUTH[pred]}</div>", unsafe_allow_html=True)
 
-        col_g, col_m = st.columns([2.5, 1])
+        col_g, col_m = st.columns([2.5, 1.2])
         with col_g:
-            # La gráfica ahora usa Arial 12, está centrada visualmente por las columnas de Streamlit y no tiene título.
+            # Gráfica generada con los parámetros solicitados (Arial, 12, sin título)
             fig = graficar_termograma(dsc_interp, archivo.name, COLORES_AUTH[pred])
             st.pyplot(fig, use_container_width=True) 
             plt.close()
 
         with col_m:
-            st.markdown("**Índice de Confianza**")
+            st.markdown("<div style='padding: 20px; background: #FFFFFF; border: 1px solid #EAE1D3; border-radius: 12px; height: 100%;'>", unsafe_allow_html=True)
+            st.markdown("<h4 style='font-size: 14px; text-transform: uppercase; color: #8C827A; margin-top:0;'>Distribución Probabilística</h4>", unsafe_allow_html=True)
             for cls, prob, col in zip(CLASES_AUTH, probs, COLORES_AUTH):
                 st.markdown(f"""
-                <div style="margin:8px 0; background: #FFFDF7; padding: 10px; border-radius: 12px; border: 1px solid #E8D5B5;">
-                    <span style="color:{col};font-weight:bold; font-family:'Montserrat', sans-serif;">{cls}</span>
-                    <div style="background:#E8D5B5;border-radius:8px;
-                         height:12px;margin-top:6px; overflow: hidden;">
-                        <div style="background:{col};width:{prob*100:.1f}%;
-                             height:12px;border-radius:8px;"></div>
+                <div style="margin: 16px 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                        <span style="font-size: 13px; font-weight: 600; color: #2B1D14;">{cls}</span>
+                        <span style="font-size: 13px; font-weight: 700; color: {col};">{prob*100:.1f}%</span>
                     </div>
-                    <div style="font-size:14px;color:#3E2723; text-align:right; font-weight:bold; margin-top:4px;">{prob*100:.1f}%</div>
+                    <div style="background:#F4EFE6; border-radius:4px; height:8px; width: 100%; overflow: hidden;">
+                        <div style="background:{col}; width:{prob*100:.1f}%; height:100%; border-radius:4px; transition: width 0.5s ease;"></div>
+                    </div>
                 </div>""", unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
 
         # ── NIVEL 2: Origen geográfico (solo si es miel) ─────
         if pred == 0:
-            st.markdown("---")
-            st.markdown(
-                "<div class='nivel-badge'>🗺️ Nivel 2 — Trazabilidad de Origen</div>",
-                unsafe_allow_html=True)
+            st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+            st.markdown("<div class='nivel-badge'>Fase 2: Trazabilidad Geográfica</div>", unsafe_allow_html=True)
 
             X_norm   = sc_geo.transform(dsc_interp.reshape(1, -1))
             X_pca    = pca_geo.transform(X_norm)
             pred_geo = m_geo.predict(X_pca)[0]
             prob_geo = m_geo.predict_proba(X_pca)[0]
 
-            css_geo   = ["resultado-cafetero","resultado-orinoquia"][pred_geo]
-            icono_geo = ["⛰️","🌅"][pred_geo]
-            st.markdown(
-                f"<div class='{css_geo}'>{icono_geo} {CLASES_GEO[pred_geo]}</div>",
-                unsafe_allow_html=True)
-
-            st.markdown("**Confianza Geográfica**")
             col_g1, col_g2 = st.columns(2)
-            for col, cls, prob, color in zip(
-                [col_g1, col_g2], CLASES_GEO, prob_geo, COLORES_GEO
-            ):
-                with col:
+            for col_ui, cls, prob, color in zip([col_g1, col_g2], CLASES_GEO, prob_geo, COLORES_GEO):
+                is_winner = prob > 0.5
+                bg_color = "#FFFFFF" if is_winner else "#FAF7F2"
+                border = f"2px solid {color}" if is_winner else "1px solid #EAE1D3"
+                opacity = "1.0" if is_winner else "0.5"
+                
+                with col_ui:
                     st.markdown(f"""
-                    <div style="text-align:center;padding:20px;background:#FFFDF7;
-                         border-radius:16px;border-bottom:5px solid {color}; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <div style="color:{color};font-family:'Montserrat', sans-serif; font-weight:700;
-                             font-size:18px;">{cls}</div>
-                        <div style="font-size:32px;font-weight:bold;
-                             color:{color};margin-top:8px;">
+                    <div style="text-align:center; padding:24px; background:{bg_color}; opacity:{opacity};
+                         border-radius:12px; border:{border}; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: all 0.3s;">
+                        <div style="color:#6B5E55; font-family:'Inter', sans-serif; font-weight:600;
+                             font-size:15px; text-transform: uppercase; letter-spacing: 1px;">{cls}</div>
+                        <div style="font-size:36px; font-weight:700; font-family:'Montserrat', sans-serif;
+                             color:{color}; margin-top:8px;">
                              {prob*100:.1f}%</div>
                     </div>""", unsafe_allow_html=True)
 
     except Exception as e:
-        st.error(f"Error procesando {archivo.name}: {e}")
+        st.error(f"Error procesando el espectro térmico: {e}")
     finally:
         os.unlink(tmp_path)
 
-    st.markdown("---")
+    st.markdown("<div style='height: 40px; border-bottom: 1px dashed #EAE1D3; margin-bottom: 40px;'></div>", unsafe_allow_html=True)
