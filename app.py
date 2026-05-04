@@ -130,14 +130,41 @@ st.markdown("""
         box-shadow: 0 0 20px rgba(200,130,10,0.12);
     }
 
-    /* ── Alerts ────────────────────────────────────────────────── */
-    [data-testid="stAlert"] {
-        background-color: rgba(255,255,255,0.80) !important;
-        border: 1px solid var(--border-gold) !important;
-        border-left: 3px solid var(--amber-mid) !important;
-        border-radius: 4px !important;
-        color: var(--text-primary) !important;
+    /* ── Ocultar alerts nativos de Streamlit ──────────────────── */
+    [data-testid="stAlert"] { display: none !important; }
+
+    /* ── Barra de estado ámbar custom ──────────────────────────── */
+    .status-bar {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 22px;
+        background: linear-gradient(90deg, rgba(232,168,32,0.12), rgba(245,212,122,0.06), transparent);
+        border-left: 3px solid var(--amber-mid);
+        border-radius: 0 4px 4px 0;
+        margin: 20px 0 8px 0;
     }
+    .status-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: var(--amber-mid);
+        box-shadow: 0 0 8px rgba(232,168,32,0.6);
+        flex-shrink: 0;
+        animation: pulse-dot 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+        0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(232,168,32,0.6); }
+        50%       { opacity: 0.55; box-shadow: 0 0 14px rgba(232,168,32,0.25); }
+    }
+    .status-text {
+        font-family: 'DM Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        color: var(--amber-dark);
+        text-transform: uppercase;
+    }
+    .status-bar-warn { border-left-color: var(--amber-dark); }
+    .status-bar-warn .status-dot { background: var(--amber-dark); animation: none; }
 
     /* ── Scrollbar ─────────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 5px; }
@@ -145,7 +172,7 @@ st.markdown("""
     ::-webkit-scrollbar-thumb { background: var(--amber-soft); border-radius: 3px; }
 
     /* ══════════════════════════════════════════════════════════════
-       HERO — Panal claro
+       HERO — Abeja ilustrada dorada
     ══════════════════════════════════════════════════════════════ */
     .hero-wrapper {
         position: relative;
@@ -157,38 +184,27 @@ st.markdown("""
         align-items: center;
     }
 
-    /* Panal SVG generado en CSS como fondo del hero */
+    /* Fondo gradiente suave */
     .hero-bg {
         position: absolute;
         inset: 0;
         background-color: var(--cream-light);
         background-image:
-            radial-gradient(ellipse 70% 60% at 80% 50%, rgba(245,212,122,0.55) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 80% at 5%  50%, rgba(255,248,225,0.8)  0%, transparent 60%);
+            radial-gradient(ellipse 65% 80% at 85% 50%, rgba(245,212,122,0.50) 0%, transparent 70%),
+            radial-gradient(ellipse 45% 60% at 10% 30%, rgba(255,245,210,0.70) 0%, transparent 65%),
+            radial-gradient(ellipse 30% 50% at 50% 90%, rgba(232,168,32,0.12) 0%, transparent 60%);
     }
 
-    /* Panal hexagonal puro CSS */
-    .hero-honeycomb {
+    /* Abeja SVG grande — derecha del hero */
+    .hero-bee {
         position: absolute;
-        right: -20px;
+        right: 60px;
         top: 50%;
         transform: translateY(-50%);
-        width: 520px;
-        height: 420px;
-        opacity: 0.18;
-    }
-    .hex-row {
-        display: flex;
-        margin-bottom: -14px;
-    }
-    .hex-row.offset { margin-left: 36px; }
-    .hex {
-        width: 60px;
-        height: 69px;
-        background: var(--amber-deep);
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        margin: 2px 3px;
-        flex-shrink: 0;
+        width: 340px;
+        height: 340px;
+        opacity: 0.22;
+        pointer-events: none;
     }
 
     /* Línea decorativa dorada izquierda */
@@ -293,19 +309,37 @@ st.markdown("""
         box-shadow: 0 6px 24px rgba(139,94,0,0.14);
     }
     .stat-value {
-        font-family: 'Playfair Display', serif;
-        font-size: 38px;
-        font-weight: 700;
-        color: var(--amber-deep);
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 2px;
         line-height: 1;
+    }
+    .stat-num {
+        font-family: 'Playfair Display', serif;
+        font-size: 58px;
+        font-weight: 900;
+        font-style: italic;
+        color: var(--amber-deep);
+        letter-spacing: -3px;
+        line-height: 1;
+    }
+    .stat-unit {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 24px;
+        font-weight: 500;
+        font-style: normal;
+        color: var(--amber-mid);
+        padding-bottom: 6px;
+        letter-spacing: 0;
     }
     .stat-label {
         font-family: 'DM Mono', monospace;
         font-size: 9px;
-        letter-spacing: 2px;
+        letter-spacing: 2.5px;
         color: var(--text-muted);
         text-transform: uppercase;
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
     /* ── SECTION HEADER ────────────────────────────────────────── */
@@ -770,24 +804,51 @@ with st.sidebar:
 # ═══════════════════════════════════════════════════════════════════
 #  HERO — Panal SVG claro
 # ═══════════════════════════════════════════════════════════════════
-# Generar filas del panal en HTML
-def hex_rows_html(rows=5, cols=7):
-    html = ""
-    for r in range(rows):
-        offset = ' offset' if r % 2 == 1 else ''
-        html += f'<div class="hex-row{offset}">'
-        for _ in range(cols):
-            html += '<div class="hex"></div>'
-        html += '</div>'
-    return html
+# SVG abeja ilustrada grande para el hero
+BEE_SVG = """
+<svg class="hero-bee" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="#C8820A">
+  <!-- abdomen -->
+  <ellipse cx="200" cy="245" rx="52" ry="85"/>
+  <!-- rayas abdomen -->
+  <rect x="150" y="220" width="100" height="16" rx="8" fill="#E8A820" opacity="0.75"/>
+  <rect x="150" y="244" width="100" height="16" rx="8" fill="#E8A820" opacity="0.75"/>
+  <rect x="154" y="268" width="92"  height="16" rx="8" fill="#E8A820" opacity="0.75"/>
+  <rect x="162" y="292" width="76"  height="13" rx="6" fill="#E8A820" opacity="0.60"/>
+  <!-- tórax -->
+  <ellipse cx="200" cy="160" rx="44" ry="40"/>
+  <!-- cabeza -->
+  <circle cx="200" cy="98" r="38"/>
+  <!-- ojos -->
+  <circle cx="182" cy="90" r="8" fill="#FFF8E1" opacity="0.6"/>
+  <circle cx="218" cy="90" r="8" fill="#FFF8E1" opacity="0.6"/>
+  <!-- antenas -->
+  <line x1="186" y1="63" x2="155" y2="22" stroke="#C8820A" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="150" cy="17" r="10"/>
+  <line x1="214" y1="63" x2="245" y2="22" stroke="#C8820A" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="250" cy="17" r="10"/>
+  <!-- alas superiores -->
+  <ellipse cx="132" cy="148" rx="78" ry="32" transform="rotate(-28 132 148)" fill="#C8820A" opacity="0.35"/>
+  <ellipse cx="268" cy="148" rx="78" ry="32" transform="rotate(28 268 148)"  fill="#C8820A" opacity="0.35"/>
+  <!-- alas inferiores -->
+  <ellipse cx="145" cy="185" rx="50" ry="20" transform="rotate(-18 145 185)" fill="#C8820A" opacity="0.20"/>
+  <ellipse cx="255" cy="185" rx="50" ry="20" transform="rotate(18 255 185)"  fill="#C8820A" opacity="0.20"/>
+  <!-- patas -->
+  <line x1="162" y1="165" x2="110" y2="210" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
+  <line x1="162" y1="150" x2="105" y2="170" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
+  <line x1="162" y1="178" x2="108" y2="230" stroke="#C8820A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="238" y1="165" x2="290" y2="210" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
+  <line x1="238" y1="150" x2="295" y2="170" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
+  <line x1="238" y1="178" x2="292" y2="230" stroke="#C8820A" stroke-width="4" stroke-linecap="round"/>
+  <!-- aguijón -->
+  <polygon points="200,328 193,348 207,348" opacity="0.8"/>
+</svg>
+"""
 
 st.markdown(f"""
 <div class="hero-wrapper">
     <div class="hero-bg"></div>
     <div class="hero-accent-line"></div>
-    <div class="hero-honeycomb">
-        {hex_rows_html(6, 8)}
-    </div>
+    {BEE_SVG}
     <div class="hero-content">
         <div class="hero-eyebrow">Calorimetría diferencial de barrido · Machine Learning</div>
         <h1 class="hero-title">
@@ -812,19 +873,19 @@ st.markdown(f"""
 st.markdown("""
 <div class="stats-row">
     <div class="stat-cell">
-        <div class="stat-value">98.4%</div>
+        <div class="stat-value"><span class="stat-num">98.4</span><span class="stat-unit">%</span></div>
         <div class="stat-label">Precisión · Autenticidad</div>
     </div>
     <div class="stat-cell">
-        <div class="stat-value">82.0%</div>
+        <div class="stat-value"><span class="stat-num">82.0</span><span class="stat-unit">%</span></div>
         <div class="stat-label">Precisión · Origen</div>
     </div>
     <div class="stat-cell">
-        <div class="stat-value">62</div>
+        <div class="stat-value"><span class="stat-num">62</span></div>
         <div class="stat-label">Muestras de entrenamiento</div>
     </div>
     <div class="stat-cell">
-        <div class="stat-value">p&lt;0.001</div>
+        <div class="stat-value"><span class="stat-num" style="font-size:42px;letter-spacing:-1px;">p&lt;0.001</span></div>
         <div class="stat-label">Confianza estadística</div>
     </div>
 </div>
@@ -835,9 +896,17 @@ st.markdown("""
 # ═══════════════════════════════════════════════════════════════════
 m_auth, sc_auth, m_geo, sc_geo, pca_geo = cargar_modelos()
 if m_auth is not None:
-    st.success("Sistemas de clasificación calibrados — Entorno listo para análisis.")
+    st.markdown('''
+    <div class="status-bar">
+        <div class="status-dot"></div>
+        <span class="status-text">Sistemas de clasificación calibrados — Entorno listo para análisis</span>
+    </div>''', unsafe_allow_html=True)
 else:
-    st.warning("Modelos no encontrados en el directorio. La interfaz opera en modo de demostración visual.")
+    st.markdown('''
+    <div class="status-bar status-bar-warn">
+        <div class="status-dot"></div>
+        <span class="status-text">Modelos no encontrados — Modo demostración visual activo</span>
+    </div>''', unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════════
 #  UPLOAD
