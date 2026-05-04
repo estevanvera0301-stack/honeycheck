@@ -81,8 +81,10 @@ st.markdown("""
         color: var(--text-primary);
         font-family: 'Cormorant Garamond', serif;
     }
+    
+    /* CORRECCIÓN 1: Damos un poco de espacio arriba para que el texto no se corte */
     .block-container {
-        padding-top: 0 !important;
+        padding-top: 3rem !important;
         padding-bottom: 3rem !important;
         max-width: 1400px;
     }
@@ -171,102 +173,6 @@ st.markdown("""
     ::-webkit-scrollbar-track { background: var(--cream-mid); }
     ::-webkit-scrollbar-thumb { background: var(--amber-soft); border-radius: 3px; }
 
-    /* ══════════════════════════════════════════════════════════════
-        HERO — Abeja ilustrada dorada
-    ══════════════════════════════════════════════════════════════ */
-    .hero-wrapper {
-        position: relative;
-        width: 100%;
-        min-height: 420px;
-        overflow: hidden;
-        margin: -1rem -1rem 0 -1rem;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Fondo gradiente suave */
-    .hero-bg {
-        position: absolute;
-        inset: 0;
-        background-color: var(--cream-light);
-        background-image:
-            radial-gradient(ellipse 65% 80% at 85% 50%, rgba(245,212,122,0.50) 0%, transparent 70%),
-            radial-gradient(ellipse 45% 60% at 10% 30%, rgba(255,245,210,0.70) 0%, transparent 65%),
-            radial-gradient(ellipse 30% 50% at 50% 90%, rgba(232,168,32,0.12) 0%, transparent 60%);
-    }
-
-    /* Línea decorativa dorada izquierda */
-    .hero-accent-line {
-        position: absolute;
-        left: 0; top: 0; bottom: 0;
-        width: 4px;
-        background: linear-gradient(180deg, transparent, var(--amber-mid), var(--amber-deep), transparent);
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 10;
-        padding: 52px 56px;
-        width: 100%;
-        max-width: 680px;
-    }
-    .hero-eyebrow {
-        font-family: 'DM Mono', monospace;
-        font-size: 10px;
-        letter-spacing: 4px;
-        color: var(--amber-deep);
-        text-transform: uppercase;
-        margin-bottom: 18px;
-        opacity: 0.9;
-    }
-    .hero-title {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(52px, 6vw, 84px);
-        font-weight: 900;
-        line-height: 0.90;
-        color: var(--text-primary);
-        letter-spacing: -1.5px;
-        margin: 0 0 6px 0;
-    }
-    .hero-title-gold {
-        color: var(--amber-deep);
-        font-style: italic;
-    }
-    .hero-subtitle {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 19px;
-        font-weight: 500;
-        color: var(--text-body);
-        margin: 20px 0 30px 0;
-        max-width: 500px;
-        line-height: 1.55;
-    }
-    .hero-divider {
-        width: 72px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--amber-mid), var(--amber-soft), transparent);
-        margin-bottom: 22px;
-        border-radius: 1px;
-    }
-    .hero-badges {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-    .hero-badge {
-        font-family: 'DM Mono', monospace;
-        font-size: 10px;
-        letter-spacing: 2px;
-        color: var(--amber-darkest);
-        border: 1px solid var(--amber-mid);
-        padding: 7px 16px;
-        border-radius: 2px;
-        text-transform: uppercase;
-        background: rgba(255,255,255,0.65);
-        backdrop-filter: blur(8px);
-    }
-
     /* ── STAT CARDS ────────────────────────────────────────────── */
     .stats-row {
         display: grid;
@@ -296,29 +202,33 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 6px 24px rgba(139,94,0,0.14);
     }
+    
+    /* CORRECCIÓN 2: Ajuste de tamaño y alineación vertical de los números */
     .stat-value {
         display: flex;
-        align-items: baseline;
+        align-items: center; /* Centrado vertical en lugar de baselínea */
         justify-content: center;
-        gap: 3px;
+        gap: 4px;
         line-height: 1;
+        min-height: 55px; /* Altura fija para que todos cuadren igual */
     }
     .stat-num {
         font-family: 'Playfair Display', serif;
-        font-size: 52px;
+        font-size: 42px; /* Tamaño unificado para que p<0.001 no se desborde */
         font-weight: 700;
         font-style: normal;
         color: var(--amber-deep);
         letter-spacing: -1px;
         line-height: 1;
+        font-variant-numeric: lining-nums; /* Asegura que los números se alineen bien */
     }
     .stat-unit {
         font-family: 'Playfair Display', serif;
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 700;
         font-style: normal;
         color: var(--amber-deep);
-        padding-bottom: 4px;
+        margin-top: 8px; /* Ajuste visual para el % */
         letter-spacing: 0;
     }
     .stat-label {
@@ -790,10 +700,10 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════════
-#  HERO — Panal SVG claro (Abeja Geométrica)
+#  HERO — Panal SVG claro (Abeja Geométrica y bordes redondeados)
 # ═══════════════════════════════════════════════════════════════════
 st.markdown("""
-<div style="position:relative; width:100%; min-height:420px; overflow:hidden; margin:-1rem -1rem 0 -1rem; display:flex; align-items:center;">
+<div style="position:relative; width:100%; min-height:420px; overflow:hidden; border-radius:12px; display:flex; align-items:center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem;">
 
 <!-- Fondo gradiente -->
 <div style="position:absolute; inset:0; background-color:#FFFDF4; background-image: radial-gradient(ellipse 65% 80% at 85% 50%, rgba(245,212,122,0.50) 0%, transparent 70%), radial-gradient(ellipse 45% 60% at 10% 30%, rgba(255,245,210,0.70) 0%, transparent 65%), radial-gradient(ellipse 30% 50% at 50% 90%, rgba(232,168,32,0.12) 0%, transparent 60%);"></div>
