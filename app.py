@@ -59,8 +59,8 @@ st.markdown("""
         --red-bad:       #8B2A2A;
         --amber-mix:     #8B6020;
 
-        /* Patrón abeja SVG embebido — silueta dorada */
-        --bee-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg opacity='0.055' fill='%23C8820A'%3E%3C!-- Cuerpo abdomen -- %3E%3Cellipse cx='60' cy='68' rx='11' ry='18' /%3E%3C!-- Rayas abdomen --%3E%3Crect x='50' y='60' width='20' height='3' rx='1.5' fill='%23E8A820' opacity='0.7'/%3E%3Crect x='50' y='66' width='20' height='3' rx='1.5' fill='%23E8A820' opacity='0.7'/%3E%3Crect x='51' y='72' width='18' height='3' rx='1.5' fill='%23E8A820' opacity='0.7'/%3E%3C!-- Torax --%3E%3Cellipse cx='60' cy='50' rx='9' ry='8' /%3E%3C!-- Cabeza --%3E%3Ccircle cx='60' cy='38' r='7' /%3E%3C!-- Antenas --%3E%3Cline x1='56' y1='32' x2='48' y2='22' stroke='%23C8820A' stroke-width='1.5' stroke-linecap='round' opacity='0.8'/%3E%3Ccircle cx='48' cy='22' r='2' /%3E%3Cline x1='64' y1='32' x2='72' y2='22' stroke='%23C8820A' stroke-width='1.5' stroke-linecap='round' opacity='0.8'/%3E%3Ccircle cx='72' cy='22' r='2' /%3E%3C!-- Alas superiores --%3E%3Cellipse cx='42' cy='46' rx='14' ry='7' transform='rotate(-25 42 46)' fill='%23C8820A' opacity='0.4'/%3E%3Cellipse cx='78' cy='46' rx='14' ry='7' transform='rotate(25 78 46)' fill='%23C8820A' opacity='0.4'/%3E%3C!-- Alas inferiores --%3E%3Cellipse cx='45' cy='56' rx='9' ry='5' transform='rotate(-15 45 56)' fill='%23C8820A' opacity='0.25'/%3E%3Cellipse cx='75' cy='56' rx='9' ry='5' transform='rotate(15 75 56)' fill='%23C8820A' opacity='0.25'/%3E%3C!-- Patas --%3E%3Cline x1='52' y1='54' x2='40' y2='65' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3Cline x1='52' y1='50' x2='38' y2='56' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3Cline x1='68' y1='54' x2='80' y2='65' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3Cline x1='68' y1='50' x2='82' y2='56' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+        /* Patrón abeja geométrica SVG embebido */
+        --bee-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' stroke='%23C8820A' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none' opacity='0.08'%3E%3Cpath d='M92,60 Q80,45 92,35 M108,60 Q120,45 108,35'/%3E%3Cpath d='M88,72 A 12 12 0 0 1 112,72'/%3E%3Ccircle cx='100' cy='95' r='16'/%3E%3Cpath d='M85,110 Q 75,140 100,165 Q 125,140 115,110 Z'/%3E%3Cpath d='M83,125 Q 100,135 117,125 M88,140 Q 100,150 112,140'/%3E%3Cpath d='M 82,90 L 25,50 L 15,65 L 60,105 L 82,100 Z'/%3E%3Cpath d='M 25,50 L 50,90 L 15,65 M 50,90 L 60,105'/%3E%3Cpath d='M 78,108 L 40,125 L 55,140 L 82,118 Z'/%3E%3Cpath d='M 40,125 L 75,114'/%3E%3Cpath d='M 118,90 L 175,50 L 185,65 L 140,105 L 118,100 Z'/%3E%3Cpath d='M 175,50 L 150,90 L 185,65 M 150,90 L 140,105'/%3E%3Cpath d='M 122,108 L 160,125 L 145,140 L 118,118 Z'/%3E%3Cpath d='M 160,125 L 125,114'/%3E%3C/svg%3E");
     }
 
     /* ── Base ─────────────────────────────────────────────────── */
@@ -193,30 +193,6 @@ st.markdown("""
             radial-gradient(ellipse 65% 80% at 85% 50%, rgba(245,212,122,0.50) 0%, transparent 70%),
             radial-gradient(ellipse 45% 60% at 10% 30%, rgba(255,245,210,0.70) 0%, transparent 65%),
             radial-gradient(ellipse 30% 50% at 50% 90%, rgba(232,168,32,0.12) 0%, transparent 60%);
-    }
-
-    /* Abeja SVG grande — derecha del hero (style inline en SVG) */
-    .hero-bee {
-        position: absolute;
-        right: 60px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 340px;
-        height: 340px;
-        opacity: 0.22;
-        pointer-events: none;
-    }
-    /* wrapper div para posicionar la abeja */
-    .hero-bee-wrap {
-        position: absolute;
-        right: 60px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 340px;
-        height: 340px;
-        opacity: 0.22;
-        pointer-events: none;
-        z-index: 5;
     }
 
     /* Línea decorativa dorada izquierda */
@@ -814,7 +790,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════════
-#  HERO — Panal SVG claro (Corregido: sin indentación)
+#  HERO — Panal SVG claro (Abeja Geométrica)
 # ═══════════════════════════════════════════════════════════════════
 st.markdown("""
 <div style="position:relative; width:100%; min-height:420px; overflow:hidden; margin:-1rem -1rem 0 -1rem; display:flex; align-items:center;">
@@ -825,43 +801,31 @@ st.markdown("""
 <!-- Línea dorada izquierda -->
 <div style="position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg, transparent, #E8A820, #C8820A, transparent); z-index:6;"></div>
 
-<!-- Abeja SVG ilustrada — derecha -->
-<div style="position:absolute; right:60px; top:50%; transform:translateY(-50%); width:340px; height:340px; opacity:0.20; pointer-events:none; z-index:5;">
-<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="#C8820A" style="width:100%; height:100%;">
-<!-- abdomen -->
-<ellipse cx="200" cy="245" rx="52" ry="85"/>
-<!-- rayas abdomen -->
-<rect x="150" y="220" width="100" height="16" rx="8" fill="#E8A820" opacity="0.75"/>
-<rect x="150" y="244" width="100" height="16" rx="8" fill="#E8A820" opacity="0.75"/>
-<rect x="154" y="268" width="92"  height="16" rx="8" fill="#E8A820" opacity="0.75"/>
-<rect x="162" y="292" width="76"  height="13" rx="6" fill="#E8A820" opacity="0.60"/>
-<!-- tórax -->
-<ellipse cx="200" cy="160" rx="44" ry="40"/>
-<!-- cabeza -->
-<circle cx="200" cy="98" r="38"/>
-<!-- ojos -->
-<circle cx="182" cy="90" r="8" fill="#FFF8E1" opacity="0.6"/>
-<circle cx="218" cy="90" r="8" fill="#FFF8E1" opacity="0.6"/>
-<!-- antenas -->
-<line x1="186" y1="63" x2="155" y2="22" stroke="#C8820A" stroke-width="7" stroke-linecap="round"/>
-<circle cx="150" cy="17" r="10"/>
-<line x1="214" y1="63" x2="245" y2="22" stroke="#C8820A" stroke-width="7" stroke-linecap="round"/>
-<circle cx="250" cy="17" r="10"/>
-<!-- alas superiores -->
-<ellipse cx="132" cy="148" rx="78" ry="32" transform="rotate(-28 132 148)" fill="#C8820A" opacity="0.35"/>
-<ellipse cx="268" cy="148" rx="78" ry="32" transform="rotate(28 268 148)"  fill="#C8820A" opacity="0.35"/>
-<!-- alas inferiores -->
-<ellipse cx="145" cy="185" rx="50" ry="20" transform="rotate(-18 145 185)" fill="#C8820A" opacity="0.20"/>
-<ellipse cx="255" cy="185" rx="50" ry="20" transform="rotate(18 255 185)"  fill="#C8820A" opacity="0.20"/>
-<!-- patas -->
-<line x1="162" y1="165" x2="110" y2="210" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
-<line x1="162" y1="150" x2="105" y2="170" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
-<line x1="162" y1="178" x2="108" y2="230" stroke="#C8820A" stroke-width="4" stroke-linecap="round"/>
-<line x1="238" y1="165" x2="290" y2="210" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
-<line x1="238" y1="150" x2="295" y2="170" stroke="#C8820A" stroke-width="5" stroke-linecap="round"/>
-<line x1="238" y1="178" x2="292" y2="230" stroke="#C8820A" stroke-width="4" stroke-linecap="round"/>
-<!-- aguijón -->
-<polygon points="200,328 193,348 207,348" opacity="0.8"/>
+<!-- Abeja Geométrica Ilustrada — derecha -->
+<div style="position:absolute; right:60px; top:50%; transform:translateY(-50%); width:340px; height:340px; opacity:0.18; pointer-events:none; z-index:5;">
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" stroke="#C8820A" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" style="width:100%; height:100%;">
+<!-- Antenas -->
+<path d="M92,60 Q80,45 92,35 M108,60 Q120,45 108,35" />
+<!-- Cabeza -->
+<path d="M88,72 A 12 12 0 0 1 112,72" />
+<!-- Tórax -->
+<circle cx="100" cy="95" r="16" />
+<!-- Abdomen -->
+<path d="M85,110 Q 75,140 100,165 Q 125,140 115,110 Z" />
+<!-- Rayas abdomen -->
+<path d="M83,125 Q 100,135 117,125 M88,140 Q 100,150 112,140" />
+<!-- Ala Sup Izquierda -->
+<path d="M 82,90 L 25,50 L 15,65 L 60,105 L 82,100 Z" />
+<path d="M 25,50 L 50,90 L 15,65 M 50,90 L 60,105" />
+<!-- Ala Inf Izquierda -->
+<path d="M 78,108 L 40,125 L 55,140 L 82,118 Z" />
+<path d="M 40,125 L 75,114" />
+<!-- Ala Sup Derecha -->
+<path d="M 118,90 L 175,50 L 185,65 L 140,105 L 118,100 Z" />
+<path d="M 175,50 L 150,90 L 185,65 M 150,90 L 140,105" />
+<!-- Ala Inf Derecha -->
+<path d="M 122,108 L 160,125 L 145,140 L 118,118 Z" />
+<path d="M 160,125 L 125,114" />
 </svg>
 </div>
 
