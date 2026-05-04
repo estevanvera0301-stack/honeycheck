@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -21,7 +20,7 @@ st.set_page_config(
 # ═══════════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
     :root {
         /* Paleta principal — luz ámbar */
@@ -633,7 +632,7 @@ def graficar_termograma(dsc_curve, nombre, color_linea):
     return fig
 
 # ═══════════════════════════════════════════════════════════════════
-#  SIDEBAR
+#  SIDEBAR (Nuevos Títulos, Tipografía y Cajas)
 # ═══════════════════════════════════════════════════════════════════
 with st.sidebar:
     st.markdown("""
@@ -641,7 +640,7 @@ with st.sidebar:
         <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:#F0C040; letter-spacing:-0.5px;">
             Honey<span style="font-style:italic;">Check</span>
         </div>
-        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:4px; color:#5A4A2A; text-transform:uppercase; margin-top:4px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:11px; font-weight:600; letter-spacing:3px; color:#C8B89A; text-transform:uppercase; margin-top:4px;">
             Sistema Jerárquico V2.0
         </div>
     </div>
@@ -649,18 +648,18 @@ with st.sidebar:
 
     st.markdown("""
     <div style="margin-bottom: 28px;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:#5A4A2A; text-transform:uppercase; margin-bottom:14px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:bold; letter-spacing:2px; color:#C8B89A; text-transform:uppercase; margin-bottom:14px;">
             Arquitectura
         </div>
-        <div style="padding: 14px 16px; background: rgba(192,154,46,0.06); border-left: 2px solid #C89A2E; margin-bottom: 8px; border-radius: 0 4px 4px 0;">
-            <div style="font-family:'DM Mono',monospace; font-size:9px; color:#8B6914; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 01</div>
-            <div style="font-size:15px; font-weight:600; color:#F5EDD6; font-family:'Cormorant Garamond',serif;">Autenticidad</div>
-            <div style="font-family:'DM Mono',monospace; font-size:10px; color:#5A4A2A; margin-top:3px;">SVM Lineal · Acc 98.39%</div>
+        <div style="padding: 14px 16px; background: #C8820A; border-left: 3px solid #F5D47A; margin-bottom: 8px; border-radius: 4px; box-shadow: 0 4px 12px rgba(200,130,10,0.2);">
+            <div style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:11px; font-weight:600; color:#FFFDF4; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; opacity: 0.9;">NIVEL 01</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF; font-family:'Cormorant Garamond',serif;">Autenticidad</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:13px; font-weight:500; color:#FFFDF4; margin-top:3px; opacity: 0.95;">SVM Lineal · Acc 98.39%</div>
         </div>
-        <div style="padding: 14px 16px; background: rgba(192,154,46,0.04); border-left: 2px solid #8B6914; margin-bottom: 8px; border-radius: 0 4px 4px 0;">
-            <div style="font-family:'DM Mono',monospace; font-size:9px; color:#5A4A2A; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 02</div>
-            <div style="font-size:15px; font-weight:600; color:#F5EDD6; font-family:'Cormorant Garamond',serif;">Origen Geográfico</div>
-            <div style="font-family:'DM Mono',monospace; font-size:10px; color:#5A4A2A; margin-top:3px;">SVM+PCA · Acc 82.00%</div>
+        <div style="padding: 14px 16px; background: #C8820A; border-left: 3px solid #F5D47A; margin-bottom: 8px; border-radius: 4px; box-shadow: 0 4px 12px rgba(200,130,10,0.2);">
+            <div style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:11px; font-weight:600; color:#FFFDF4; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; opacity: 0.9;">NIVEL 02</div>
+            <div style="font-size:18px; font-weight:700; color:#FFFFFF; font-family:'Cormorant Garamond',serif;">Origen Geográfico</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:13px; font-weight:500; color:#FFFDF4; margin-top:3px; opacity: 0.95;">SVM+PCA · Acc 82.00%</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -668,30 +667,30 @@ with st.sidebar:
     ICONOS_AUTH = ["◆", "◆", "◆"]
     COLORES_SIDE = ["#4CAF7D", "#E05555", "#F0C040"]
     st.markdown("""<div style="margin-bottom:20px;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:#5A4A2A; text-transform:uppercase; margin-bottom:12px;">Clases detectables</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:bold; letter-spacing:2px; color:#C8B89A; text-transform:uppercase; margin-bottom:12px;">Clases detectables</div>
     """, unsafe_allow_html=True)
     for cls, col, ico in zip(CLASES_AUTH, COLORES_SIDE, ICONOS_AUTH):
         st.markdown(f"""
         <div style="display:flex; align-items:center; gap:10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);">
-            <span style="color:{col}; font-size:7px;">{ico}</span>
-            <span style="font-size:14px; color:#C8B89A; font-family:'Cormorant Garamond',serif;">{cls}</span>
+            <span style="color:{col}; font-size:10px;">{ico}</span>
+            <span style="font-size:16px; color:#E8E0D0; font-family:'Cormorant Garamond',serif;">{cls}</span>
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""<div style="margin-top:20px; margin-bottom:20px;">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:#5A4A2A; text-transform:uppercase; margin-bottom:12px;">Orígenes geográficos</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:bold; letter-spacing:2px; color:#C8B89A; text-transform:uppercase; margin-bottom:12px;">Orígenes geográficos</div>
     """, unsafe_allow_html=True)
     for cls, col in zip(CLASES_GEO, COLORES_GEO):
         st.markdown(f"""
         <div style="display:flex; align-items:center; gap:10px; padding: 7px 0 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04);">
-            <span style="color:{col}; font-size:7px;">◆</span>
-            <span style="font-size:13px; color:#8A7A5A; font-family:'Cormorant Garamond',serif;">{cls}</span>
+            <span style="color:{col}; font-size:10px;">◆</span>
+            <span style="font-size:15px; color:#E8E0D0; font-family:'Cormorant Garamond',serif;">{cls}</span>
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""
     <div style="margin-top:auto; padding-top:20px; border-top:1px solid rgba(192,154,46,0.1);">
-        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; color:#3D2E0A; text-transform:uppercase; line-height:1.8;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:12px; letter-spacing:1px; color:#8A7A5A; text-transform:uppercase; line-height:1.6; font-weight:600;">
             Universidad del Quindío<br>Grupo de Investigación<br>Ciencia e Ingeniería de Alimentos
         </div>
     </div>
