@@ -57,6 +57,11 @@ st.markdown("""
     .logo-brand {
         font-family: 'Playfair Display', serif !important;
     }
+    
+    /* EXCEPCIÓN: Protege los íconos de Streamlit para que no se superpongan como texto "uploadUpload" */
+    .stIcon, .material-symbols-rounded, .material-icons, span[class*="icon"] {
+        font-family: "Material Symbols Rounded", "Material Icons", sans-serif !important;
+    }
 
     .stApp {
         background-color: var(--cream-base) !important;
