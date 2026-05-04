@@ -82,7 +82,6 @@ st.markdown("""
         font-family: 'Cormorant Garamond', serif;
     }
     
-    /* CORRECCIÓN 1: Damos un poco de espacio arriba para que el texto no se corte */
     .block-container {
         padding-top: 3rem !important;
         padding-bottom: 3rem !important;
@@ -203,24 +202,23 @@ st.markdown("""
         box-shadow: 0 6px 24px rgba(139,94,0,0.14);
     }
     
-    /* CORRECCIÓN 2: Ajuste de tamaño y alineación vertical de los números */
     .stat-value {
         display: flex;
-        align-items: center; /* Centrado vertical en lugar de baselínea */
+        align-items: center;
         justify-content: center;
         gap: 4px;
         line-height: 1;
-        min-height: 55px; /* Altura fija para que todos cuadren igual */
+        min-height: 55px;
     }
     .stat-num {
         font-family: 'Playfair Display', serif;
-        font-size: 42px; /* Tamaño unificado para que p<0.001 no se desborde */
+        font-size: 42px;
         font-weight: 700;
         font-style: normal;
         color: var(--amber-deep);
         letter-spacing: -1px;
         line-height: 1;
-        font-variant-numeric: lining-nums; /* Asegura que los números se alineen bien */
+        font-variant-numeric: lining-nums;
     }
     .stat-unit {
         font-family: 'Playfair Display', serif;
@@ -228,7 +226,7 @@ st.markdown("""
         font-weight: 700;
         font-style: normal;
         color: var(--amber-deep);
-        margin-top: 8px; /* Ajuste visual para el % */
+        margin-top: 8px;
         letter-spacing: 0;
     }
     .stat-label {
@@ -741,7 +739,7 @@ st.markdown("""
 
 <!-- Contenido del hero -->
 <div style="position:relative; z-index:10; padding:52px 56px; width:100%; max-width:680px;">
-<div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:4px; color:#C8820A; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
+<div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:600; letter-spacing:2px; color:#C8820A; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
 Calorimetría diferencial de barrido · Machine Learning
 </div>
 <div style="font-family:'Playfair Display',serif; font-size:clamp(52px,6vw,84px); font-weight:900; line-height:0.90; color:#3D2200; letter-spacing:-1.5px; margin:0 0 6px 0;">
@@ -752,9 +750,9 @@ Honey<span style="color:#C8820A; font-style:italic;">Check</span>
 Detección de adulteración y trazabilidad geográfica de mieles colombianas mediante análisis DSC y modelos de clasificación supervisada.
 </p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-<span style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">Sistema Jerárquico V2.0</span>
-<span style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">Universidad del Quindío</span>
-<span style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">NETZSCH DSC 214 Polyma</span>
+<span style="font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">Sistema Jerárquico V2.0</span>
+<span style="font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">Universidad del Quindío</span>
+<span style="font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">NETZSCH DSC 214 Polyma</span>
 </div>
 </div>
 </div>
