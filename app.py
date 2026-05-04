@@ -2,7 +2,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib.subplots as plt
 import matplotlib.ticker as ticker
 import joblib, os, tempfile
 from scipy.interpolate import interp1d
@@ -345,7 +345,7 @@ def graficar_termograma(dsc_curve, nombre, color_linea):
     return fig
 
 # ═══════════════════════════════════════════════════════════════════
-#  SIDEBAR (Tipografía unificada y Recuadros)
+#  SIDEBAR
 # ═══════════════════════════════════════════════════════════════════
 with st.sidebar:
     st.markdown("""
@@ -387,7 +387,6 @@ with st.sidebar:
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # Ahora Orígenes Geográficos también con fondo Ámbar
     st.markdown("""<div style="margin-top:20px; margin-bottom:20px;">
         <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#C8B89A; text-transform:uppercase; margin-bottom:12px;">Orígenes geográficos</div>
     """, unsafe_allow_html=True)
@@ -401,7 +400,7 @@ with st.sidebar:
     st.markdown("""
     <div style="margin-top:auto; padding-top:20px; border-top:1px solid rgba(192,154,46,0.1);">
         <div style="font-size:13px; letter-spacing:1px; color:#8A7A5A; text-transform:uppercase; line-height:1.6; font-weight:700;">
-            Universidad del Quindío<br>Grupo de Investigación<br>Ciencia e Ingeniería de Alimentos
+            Universidad del Quindío<br>Grupo de Investigación<br>Plaguicidas y Salud
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -523,7 +522,7 @@ if not archivos:
     st.markdown("""
     <div class="footer">
         <div class="footer-left">HONEYCHECK · SISTEMA JERÁRQUICO V2.0 · © 2024</div>
-        <div class="footer-right">Universidad del Quindío <span class="footer-gold">— Grupo CIA</span></div>
+        <div class="footer-right">Universidad del Quindío <span class="footer-gold">— Grupo Plaguicidas y Salud</span></div>
     </div>
     """, unsafe_allow_html=True)
     st.stop()
@@ -654,6 +653,6 @@ for i, archivo in enumerate(archivos):
 st.markdown("""
 <div class="footer">
     <div class="footer-left">HONEYCHECK · SISTEMA JERÁRQUICO V2.0 · © 2024</div>
-    <div class="footer-right">Universidad del Quindío <span class="footer-gold">— Grupo CIA</span></div>
+    <div class="footer-right">Universidad del Quindío <span class="footer-gold">— Grupo Plaguicidas y Salud</span></div>
 </div>
 """, unsafe_allow_html=True)
