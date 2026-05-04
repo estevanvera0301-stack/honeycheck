@@ -739,7 +739,7 @@ st.markdown("""
 
 <!-- Contenido del hero -->
 <div style="position:relative; z-index:10; padding:52px 56px; width:100%; max-width:680px;">
-<div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:600; letter-spacing:2px; color:#C8820A; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
+<div style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:14px; font-weight:600; letter-spacing:2px; color:#C8820A; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
 Calorimetría diferencial de barrido · Machine Learning
 </div>
 <div style="font-family:'Playfair Display',serif; font-size:clamp(52px,6vw,84px); font-weight:900; line-height:0.90; color:#3D2200; letter-spacing:-1.5px; margin:0 0 6px 0;">
@@ -750,9 +750,9 @@ Honey<span style="color:#C8820A; font-style:italic;">Check</span>
 Detección de adulteración y trazabilidad geográfica de mieles colombianas mediante análisis DSC y modelos de clasificación supervisada.
 </p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-<span style="font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">Sistema Jerárquico V2.0</span>
-<span style="font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">Universidad del Quindío</span>
-<span style="font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">NETZSCH DSC 214 Polyma</span>
+<span style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">SISTEMA JERÁRQUICO V2.0</span>
+<span style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">UNIVERSIDAD DEL QUINDÍO</span>
+<span style="font-family:'Cormorant Garamond',serif; font-variant-numeric:lining-nums; font-size:13px; font-weight:600; letter-spacing:1px; color:#5C3D00; border:1px solid #E8A820; padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.65); backdrop-filter:blur(8px); text-transform:uppercase;">NETZSCH DSC 214 POLYMA</span>
 </div>
 </div>
 </div>
