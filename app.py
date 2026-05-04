@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -498,6 +499,7 @@ T_MIN, T_MAX, N_PTS = -30.0, 190.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
 CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
 CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
+# Estos son los colores exactos usados en las barras (Verde, Rojo, Ámbar)
 COLORES_AUTH = ["#2E7D40", "#C0392B", "#C8820A"]
 COLORES_GEO  = ["#C89A2E", "#8B5A2B"]
 
@@ -632,7 +634,7 @@ def graficar_termograma(dsc_curve, nombre, color_linea):
     return fig
 
 # ═══════════════════════════════════════════════════════════════════
-#  SIDEBAR (Nuevos Títulos, Tipografía y Cajas)
+#  SIDEBAR
 # ═══════════════════════════════════════════════════════════════════
 with st.sidebar:
     st.markdown("""
@@ -664,16 +666,14 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    ICONOS_AUTH = ["◆", "◆", "◆"]
-    COLORES_SIDE = ["#4CAF7D", "#E05555", "#F0C040"]
+    # Aquí construimos los rectángulos de color basados en los colores de la gráfica (COLORES_AUTH)
     st.markdown("""<div style="margin-bottom:20px;">
         <div style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:bold; letter-spacing:2px; color:#C8B89A; text-transform:uppercase; margin-bottom:12px;">Clases detectables</div>
     """, unsafe_allow_html=True)
-    for cls, col, ico in zip(CLASES_AUTH, COLORES_SIDE, ICONOS_AUTH):
+    for cls, col in zip(CLASES_AUTH, COLORES_AUTH):
         st.markdown(f"""
-        <div style="display:flex; align-items:center; gap:10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);">
-            <span style="color:{col}; font-size:10px;">{ico}</span>
-            <span style="font-size:16px; color:#E8E0D0; font-family:'Cormorant Garamond',serif;">{cls}</span>
+        <div style="background-color: {col}; padding: 12px 16px; margin-bottom: 8px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+            <div style="font-size:16px; font-weight:700; color:#FFFFFF; font-family:'Cormorant Garamond',serif; letter-spacing:0.5px;">{cls}</div>
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
