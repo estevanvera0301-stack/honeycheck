@@ -23,6 +23,7 @@ st.markdown("""
 <style>
     /* Solo importamos Cormorant Garamond y Playfair para el Logo */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
 
     :root {
         --cream-light:   #FFFDF4;
@@ -48,9 +49,15 @@ st.markdown("""
     }
 
     /* ── UNIFICACIÓN GLOBAL DE TIPOGRAFÍA Y NÚMEROS NIVELADOS ── */
-    html, body, [class*="css"], span, div, p, h1, h2, h3, h4, h5, h6, label {
+    /* Excluimos los "span" y selectores abstractos para no romper las ligaduras de los íconos de Streamlit */
+    html, body, div, p, h1, h2, h3, h4, h5, h6, label, button, ul, li {
         font-family: 'Cormorant Garamond', serif !important;
         font-variant-numeric: lining-nums !important; /* Fuerza los números al mismo nivel */
+    }
+    
+    /* Aplicamos la misma alineación de números a etiquetas span sin forzar su fuente */
+    span {
+        font-variant-numeric: lining-nums !important;
     }
     
     /* Excepción solo para el logo principal */
@@ -58,9 +65,9 @@ st.markdown("""
         font-family: 'Playfair Display', serif !important;
     }
     
-    /* EXCEPCIÓN: Protege los íconos de Streamlit para que no se superpongan como texto "uploadUpload" */
-    .stIcon, .material-symbols-rounded, .material-icons, span[class*="icon"] {
-        font-family: "Material Symbols Rounded", "Material Icons", sans-serif !important;
+    /* Seguridad adicional para iconos de Material Symbols */
+    .stIcon, .material-symbols-rounded {
+        font-family: "Material Symbols Rounded", sans-serif !important;
     }
 
     .stApp {
@@ -508,7 +515,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-archivos = st.file_uploader(
+archivos = file_uploader = st.file_uploader(
     "Archivos .txt del NETZSCH DSC 214 Polyma",
     type=["txt"],
     accept_multiple_files=True,
