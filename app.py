@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -16,35 +17,67 @@ st.set_page_config(
 )
 
 # ═══════════════════════════════════════════════════════════════════
-#  CSS: DARK LUXURY — Fondo negro, dorado, tipografía refinada
+#  CSS: AMBER LIGHT — Gradiente crema-ámbar, patrón abejas, sidebar oscuro
 # ═══════════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
     :root {
-        --gold-bright:  #F0C040;
-        --gold-mid:     #C89A2E;
-        --gold-dark:    #8B6914;
-        --gold-muted:   #3D2E0A;
-        --obsidian:     #080808;
-        --surface-1:    #101010;
-        --surface-2:    #161616;
-        --surface-3:    #1E1E1E;
-        --surface-4:    #252525;
-        --border:       rgba(192,154,46,0.18);
-        --border-glow:  rgba(240,192,64,0.45);
-        --text-primary: #F5EDD6;
-        --text-muted:   #8A7A5A;
-        --text-dim:     #4A3F2A;
-        --green-ok:     #2E7D55;
-        --red-bad:      #8B2A2A;
-        --amber-mix:    #8B6020;
+        /* Paleta principal — luz ámbar */
+        --cream-light:   #FFFDF4;
+        --cream-base:    #FFF8E1;
+        --cream-mid:     #FDEFC3;
+        --amber-soft:    #F5D47A;
+        --amber-mid:     #E8A820;
+        --amber-deep:    #C8820A;
+        --amber-dark:    #8B5E00;
+        --amber-darkest: #5C3D00;
+
+        /* Textos */
+        --text-primary:  #3D2200;
+        --text-body:     #5C3A0A;
+        --text-muted:    #9A7040;
+        --text-dim:      #C4A46A;
+
+        /* Tarjetas */
+        --card-bg:       #FFFFFF;
+        --card-border:   rgba(200,130,10,0.35);
+        --card-shadow:   rgba(139,94,0,0.10);
+
+        /* Sidebar — oscuro como contraste */
+        --sidebar-bg:    #0F0A03;
+        --sidebar-surf:  #1A1205;
+        --sidebar-border:rgba(192,154,46,0.18);
+        --sidebar-gold:  #F0C040;
+        --sidebar-text:  #F5EDD6;
+        --sidebar-muted: #7A6A3A;
+
+        /* UI */
+        --border-gold:   rgba(200,130,10,0.30);
+        --green-ok:      #2E7D40;
+        --red-bad:       #8B2A2A;
+        --amber-mix:     #8B6020;
+
+        /* Patrón abeja SVG embebido — silueta dorada */
+        --bee-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg opacity='0.055' fill='%23C8820A'%3E%3C!-- Cuerpo abdomen -- %3E%3Cellipse cx='60' cy='68' rx='11' ry='18' /%3E%3C!-- Rayas abdomen --%3E%3Crect x='50' y='60' width='20' height='3' rx='1.5' fill='%23E8A820' opacity='0.7'/%3E%3Crect x='50' y='66' width='20' height='3' rx='1.5' fill='%23E8A820' opacity='0.7'/%3E%3Crect x='51' y='72' width='18' height='3' rx='1.5' fill='%23E8A820' opacity='0.7'/%3E%3C!-- Torax --%3E%3Cellipse cx='60' cy='50' rx='9' ry='8' /%3E%3C!-- Cabeza --%3E%3Ccircle cx='60' cy='38' r='7' /%3E%3C!-- Antenas --%3E%3Cline x1='56' y1='32' x2='48' y2='22' stroke='%23C8820A' stroke-width='1.5' stroke-linecap='round' opacity='0.8'/%3E%3Ccircle cx='48' cy='22' r='2' /%3E%3Cline x1='64' y1='32' x2='72' y2='22' stroke='%23C8820A' stroke-width='1.5' stroke-linecap='round' opacity='0.8'/%3E%3Ccircle cx='72' cy='22' r='2' /%3E%3C!-- Alas superiores --%3E%3Cellipse cx='42' cy='46' rx='14' ry='7' transform='rotate(-25 42 46)' fill='%23C8820A' opacity='0.4'/%3E%3Cellipse cx='78' cy='46' rx='14' ry='7' transform='rotate(25 78 46)' fill='%23C8820A' opacity='0.4'/%3E%3C!-- Alas inferiores --%3E%3Cellipse cx='45' cy='56' rx='9' ry='5' transform='rotate(-15 45 56)' fill='%23C8820A' opacity='0.25'/%3E%3Cellipse cx='75' cy='56' rx='9' ry='5' transform='rotate(15 75 56)' fill='%23C8820A' opacity='0.25'/%3E%3C!-- Patas --%3E%3Cline x1='52' y1='54' x2='40' y2='65' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3Cline x1='52' y1='50' x2='38' y2='56' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3Cline x1='68' y1='54' x2='80' y2='65' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3Cline x1='68' y1='50' x2='82' y2='56' stroke='%23C8820A' stroke-width='1' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
     }
 
     /* ── Base ─────────────────────────────────────────────────── */
     .stApp {
-        background-color: var(--obsidian) !important;
+        background-color: var(--cream-base) !important;
+        background-image:
+            var(--bee-pattern),
+            linear-gradient(
+                160deg,
+                var(--cream-light) 0%,
+                var(--cream-base)  35%,
+                var(--cream-mid)   65%,
+                var(--amber-soft)  100%
+            ) !important;
+        background-repeat: repeat, no-repeat !important;
+        background-size: 120px 120px, cover !important;
+        background-attachment: fixed !important;
         color: var(--text-primary);
         font-family: 'Cormorant Garamond', serif;
     }
@@ -54,23 +87,23 @@ st.markdown("""
         max-width: 1400px;
     }
 
-    /* ── Sidebar ───────────────────────────────────────────────── */
+    /* ── Sidebar oscuro — contraste elegante ───────────────────── */
     [data-testid="stSidebar"] {
-        background-color: var(--surface-1) !important;
-        border-right: 1px solid var(--border) !important;
+        background-color: var(--sidebar-bg) !important;
+        border-right: 1px solid var(--sidebar-border) !important;
     }
     [data-testid="stSidebar"]::before {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0;
         height: 2px;
-        background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+        background: linear-gradient(90deg, transparent, var(--sidebar-gold), transparent);
     }
-    [data-testid="stSidebar"] * { color: var(--text-primary) !important; }
+    [data-testid="stSidebar"] * { color: var(--sidebar-text) !important; }
     [data-testid="stSidebar"] h1,
     [data-testid="stSidebar"] h2,
     [data-testid="stSidebar"] h3 {
-        color: var(--gold-bright) !important;
+        color: var(--sidebar-gold) !important;
         font-family: 'Playfair Display', serif !important;
     }
 
@@ -79,136 +112,154 @@ st.markdown("""
         font-family: 'Playfair Display', serif !important;
         color: var(--text-primary) !important;
     }
-    p, span, div, label { font-family: 'Cormorant Garamond', serif; }
+    p, span, div, label {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--text-body);
+    }
 
     /* ── Upload zone ───────────────────────────────────────────── */
     [data-testid="stFileUploadDropzone"] {
-        background-color: var(--surface-2) !important;
-        border: 1px solid var(--border) !important;
-        border-radius: 4px !important;
-        transition: all 0.4s ease;
+        background-color: rgba(255,255,255,0.75) !important;
+        border: 1.5px dashed var(--border-gold) !important;
+        border-radius: 6px !important;
+        transition: all 0.3s ease;
     }
     [data-testid="stFileUploadDropzone"]:hover {
-        border-color: var(--gold-bright) !important;
-        box-shadow: 0 0 30px rgba(240,192,64,0.08), inset 0 0 20px rgba(240,192,64,0.03);
+        border-color: var(--amber-deep) !important;
+        background-color: rgba(255,248,225,0.9) !important;
+        box-shadow: 0 0 20px rgba(200,130,10,0.12);
     }
 
     /* ── Alerts ────────────────────────────────────────────────── */
     [data-testid="stAlert"] {
-        background-color: var(--surface-2) !important;
-        border: 1px solid var(--border) !important;
-        border-left: 3px solid var(--gold-mid) !important;
-        border-radius: 2px !important;
+        background-color: rgba(255,255,255,0.80) !important;
+        border: 1px solid var(--border-gold) !important;
+        border-left: 3px solid var(--amber-mid) !important;
+        border-radius: 4px !important;
         color: var(--text-primary) !important;
     }
 
     /* ── Scrollbar ─────────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--obsidian); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream-mid); }
+    ::-webkit-scrollbar-thumb { background: var(--amber-soft); border-radius: 3px; }
 
     /* ══════════════════════════════════════════════════════════════
-       COMPONENTES CUSTOM
+       HERO — Panal claro
     ══════════════════════════════════════════════════════════════ */
-
-    /* ── HERO ──────────────────────────────────────────────────── */
     .hero-wrapper {
         position: relative;
         width: 100%;
-        min-height: 480px;
+        min-height: 420px;
         overflow: hidden;
         margin: -1rem -1rem 0 -1rem;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
     }
+
+    /* Panal SVG generado en CSS como fondo del hero */
     .hero-bg {
         position: absolute;
         inset: 0;
-        background-image: url('https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=1800&q=90&fit=crop');
-        background-size: cover;
-        background-position: center 35%;
-        filter: brightness(0.45) saturate(0.7);
-        transform: scale(1.02);
-        transition: transform 8s ease;
+        background-color: var(--cream-light);
+        background-image:
+            radial-gradient(ellipse 70% 60% at 80% 50%, rgba(245,212,122,0.55) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 80% at 5%  50%, rgba(255,248,225,0.8)  0%, transparent 60%);
     }
-    .hero-overlay {
+
+    /* Panal hexagonal puro CSS */
+    .hero-honeycomb {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-            to bottom,
-            rgba(8,8,8,0.15) 0%,
-            rgba(8,8,8,0.0) 30%,
-            rgba(8,8,8,0.6) 65%,
-            rgba(8,8,8,0.97) 100%
-        );
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 520px;
+        height: 420px;
+        opacity: 0.18;
     }
-    .hero-grain {
+    .hex-row {
+        display: flex;
+        margin-bottom: -14px;
+    }
+    .hex-row.offset { margin-left: 36px; }
+    .hex {
+        width: 60px;
+        height: 69px;
+        background: var(--amber-deep);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        margin: 2px 3px;
+        flex-shrink: 0;
+    }
+
+    /* Línea decorativa dorada izquierda */
+    .hero-accent-line {
         position: absolute;
-        inset: 0;
-        opacity: 0.035;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        background-repeat: repeat;
-        background-size: 128px 128px;
+        left: 0; top: 0; bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, transparent, var(--amber-mid), var(--amber-deep), transparent);
     }
+
     .hero-content {
         position: relative;
         z-index: 10;
-        padding: 0 56px 52px 56px;
+        padding: 52px 56px;
         width: 100%;
+        max-width: 680px;
     }
     .hero-eyebrow {
         font-family: 'DM Mono', monospace;
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 4px;
-        color: var(--gold-mid);
+        color: var(--amber-deep);
         text-transform: uppercase;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
         opacity: 0.9;
     }
     .hero-title {
         font-family: 'Playfair Display', serif;
-        font-size: clamp(48px, 6vw, 80px);
+        font-size: clamp(52px, 6vw, 84px);
         font-weight: 900;
-        line-height: 0.92;
-        color: #FFFFFF;
-        letter-spacing: -1px;
-        margin: 0 0 4px 0;
+        line-height: 0.90;
+        color: var(--text-primary);
+        letter-spacing: -1.5px;
+        margin: 0 0 6px 0;
     }
     .hero-title-gold {
-        color: var(--gold-bright);
+        color: var(--amber-deep);
         font-style: italic;
     }
     .hero-subtitle {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 20px;
-        font-weight: 400;
-        color: rgba(245,237,214,0.75);
-        margin: 18px 0 28px 0;
-        max-width: 520px;
-        line-height: 1.5;
+        font-size: 19px;
+        font-weight: 500;
+        color: var(--text-body);
+        margin: 20px 0 30px 0;
+        max-width: 500px;
+        line-height: 1.55;
     }
     .hero-divider {
-        width: 64px;
-        height: 1px;
-        background: linear-gradient(90deg, var(--gold-bright), transparent);
-        margin-bottom: 20px;
+        width: 72px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--amber-mid), var(--amber-soft), transparent);
+        margin-bottom: 22px;
+        border-radius: 1px;
     }
     .hero-badges {
         display: flex;
-        gap: 20px;
+        gap: 12px;
         flex-wrap: wrap;
         align-items: center;
     }
     .hero-badge {
         font-family: 'DM Mono', monospace;
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 2px;
-        color: var(--gold-mid);
-        border: 1px solid rgba(192,154,46,0.3);
+        color: var(--amber-darkest);
+        border: 1px solid var(--amber-mid);
         padding: 7px 16px;
-        border-radius: 1px;
+        border-radius: 2px;
         text-transform: uppercase;
-        background: rgba(8,8,8,0.5);
+        background: rgba(255,255,255,0.65);
         backdrop-filter: blur(8px);
     }
 
@@ -216,45 +267,45 @@ st.markdown("""
     .stats-row {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-        border-radius: 2px;
-        overflow: hidden;
+        gap: 14px;
         margin: 32px 0 40px 0;
     }
     .stat-cell {
-        background: var(--surface-1);
-        padding: 28px 24px;
+        background: var(--card-bg);
+        padding: 26px 20px;
         text-align: center;
+        border: 1px solid var(--card-border);
+        border-radius: 6px;
+        box-shadow: 0 2px 16px var(--card-shadow);
         position: relative;
-        transition: background 0.3s;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
     }
-    .stat-cell:hover { background: var(--surface-2); }
-    .stat-cell::after {
+    .stat-cell::before {
         content: '';
         position: absolute;
-        bottom: 0; left: 50%;
-        transform: translateX(-50%) scaleX(0);
-        width: 40px; height: 1px;
-        background: var(--gold-bright);
-        transition: transform 0.3s;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--amber-soft), var(--amber-mid), var(--amber-soft));
     }
-    .stat-cell:hover::after { transform: translateX(-50%) scaleX(1); }
+    .stat-cell:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(139,94,0,0.14);
+    }
     .stat-value {
         font-family: 'Playfair Display', serif;
-        font-size: 36px;
+        font-size: 38px;
         font-weight: 700;
-        color: var(--gold-bright);
+        color: var(--amber-deep);
         line-height: 1;
     }
     .stat-label {
         font-family: 'DM Mono', monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 2px;
         color: var(--text-muted);
         text-transform: uppercase;
-        margin-top: 8px;
+        margin-top: 10px;
     }
 
     /* ── SECTION HEADER ────────────────────────────────────────── */
@@ -263,25 +314,28 @@ st.markdown("""
         align-items: center;
         gap: 16px;
         margin: 40px 0 24px 0;
-        padding-bottom: 16px;
-        border-bottom: 1px solid var(--border);
+        padding-bottom: 14px;
+        border-bottom: 1.5px solid var(--amber-soft);
     }
     .section-number {
         font-family: 'DM Mono', monospace;
         font-size: 11px;
-        color: var(--gold-dark);
+        color: var(--amber-mid);
         letter-spacing: 2px;
+        background: rgba(232,168,32,0.12);
+        padding: 4px 10px;
+        border-radius: 2px;
     }
     .section-title {
         font-family: 'Playfair Display', serif;
         font-size: 22px;
-        color: var(--text-primary);
+        color: var(--text-primary) !important;
         margin: 0;
     }
     .section-line {
         flex: 1;
         height: 1px;
-        background: linear-gradient(90deg, var(--border), transparent);
+        background: linear-gradient(90deg, var(--amber-soft), transparent);
     }
 
     /* ── SAMPLE CARD ───────────────────────────────────────────── */
@@ -289,18 +343,18 @@ st.markdown("""
         display: flex;
         align-items: center;
         gap: 14px;
-        padding: 18px 24px;
-        background: var(--surface-2);
-        border: 1px solid var(--border);
+        padding: 16px 24px;
+        background: linear-gradient(90deg, rgba(255,248,225,0.9), rgba(255,255,255,0.7));
+        border: 1.5px solid var(--card-border);
         border-bottom: none;
-        border-radius: 2px 2px 0 0;
+        border-radius: 8px 8px 0 0;
         margin-top: 28px;
     }
     .sample-dot {
-        width: 8px; height: 8px;
+        width: 10px; height: 10px;
         border-radius: 50%;
-        background: var(--gold-bright);
-        box-shadow: 0 0 8px var(--gold-bright);
+        background: var(--amber-mid);
+        box-shadow: 0 0 10px rgba(232,168,32,0.5);
         flex-shrink: 0;
     }
     .sample-name {
@@ -310,11 +364,13 @@ st.markdown("""
         letter-spacing: 1px;
     }
     .sample-body {
-        border: 1px solid var(--border);
+        border: 1.5px solid var(--card-border);
         border-top: none;
-        border-radius: 0 0 2px 2px;
+        border-radius: 0 0 8px 8px;
         padding: 28px;
-        background: var(--surface-1);
+        background: rgba(255,255,255,0.82);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 4px 24px var(--card-shadow);
     }
 
     /* ── LEVEL BADGE ───────────────────────────────────────────── */
@@ -325,53 +381,52 @@ st.markdown("""
         font-family: 'DM Mono', monospace;
         font-size: 10px;
         letter-spacing: 3px;
-        color: var(--gold-mid);
+        color: var(--amber-darkest);
         text-transform: uppercase;
-        padding: 6px 14px;
-        border: 1px solid rgba(192,154,46,0.25);
-        border-radius: 1px;
-        background: rgba(192,154,46,0.05);
-        margin: 16px 0 12px 0;
+        padding: 6px 16px;
+        border: 1px solid var(--amber-mid);
+        border-radius: 2px;
+        background: rgba(245,212,122,0.20);
+        margin: 16px 0 14px 0;
     }
     .level-badge::before {
-        content: '';
-        width: 4px; height: 4px;
-        border-radius: 50%;
-        background: var(--gold-bright);
+        content: '⬡';
+        font-size: 10px;
+        color: var(--amber-mid);
     }
 
     /* ── RESULTADO CARDS ───────────────────────────────────────── */
     .resultado-base {
         padding: 22px 28px;
-        border-radius: 2px;
+        border-radius: 6px;
         margin: 10px 0 20px 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid;
+        border: 1.5px solid;
     }
     .resultado-real {
-        background: linear-gradient(135deg, rgba(46,125,85,0.15), rgba(46,125,85,0.05));
-        border-color: rgba(46,125,85,0.4);
+        background: linear-gradient(135deg, rgba(46,125,64,0.10), rgba(240,255,245,0.8));
+        border-color: rgba(46,125,64,0.35);
     }
-    .resultado-real .res-icon { color: #4CAF7D; }
+    .resultado-real .res-icon { color: #2E7D40; }
     .resultado-adulterada {
-        background: linear-gradient(135deg, rgba(139,42,42,0.15), rgba(139,42,42,0.05));
-        border-color: rgba(139,42,42,0.4);
+        background: linear-gradient(135deg, rgba(139,42,42,0.10), rgba(255,245,245,0.8));
+        border-color: rgba(139,42,42,0.35);
     }
-    .resultado-adulterada .res-icon { color: #E05555; }
+    .resultado-adulterada .res-icon { color: #C0392B; }
     .resultado-mezcla {
-        background: linear-gradient(135deg, rgba(139,96,32,0.15), rgba(139,96,32,0.05));
-        border-color: rgba(139,96,32,0.4);
+        background: linear-gradient(135deg, rgba(200,130,10,0.12), rgba(255,253,240,0.8));
+        border-color: rgba(200,130,10,0.35);
     }
-    .resultado-mezcla .res-icon { color: var(--gold-bright); }
+    .resultado-mezcla .res-icon { color: var(--amber-deep); }
     .res-label {
         font-family: 'DM Mono', monospace;
         font-size: 10px;
         letter-spacing: 3px;
         color: var(--text-muted);
         text-transform: uppercase;
-        margin-bottom: 4px;
+        margin-bottom: 5px;
     }
     .res-value {
         font-family: 'Playfair Display', serif;
@@ -379,36 +434,34 @@ st.markdown("""
         font-weight: 700;
         color: var(--text-primary);
     }
-    .res-icon {
-        font-size: 36px;
-        opacity: 0.9;
-    }
+    .res-icon { font-size: 36px; opacity: 0.85; }
 
     /* ── PROBABILITY BARS ──────────────────────────────────────── */
     .prob-container {
-        background: var(--surface-2);
-        border: 1px solid var(--border);
-        border-radius: 2px;
-        padding: 24px;
+        background: rgba(255,255,255,0.85);
+        border: 1.5px solid var(--card-border);
+        border-radius: 6px;
+        padding: 22px;
         height: 100%;
+        box-shadow: 0 2px 12px var(--card-shadow);
     }
     .prob-title {
         font-family: 'DM Mono', monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 3px;
         color: var(--text-muted);
         text-transform: uppercase;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     .prob-row { margin: 14px 0; }
     .prob-row-top {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        margin-bottom: 6px;
+        margin-bottom: 7px;
     }
     .prob-cls {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
         color: var(--text-primary);
         font-family: 'Cormorant Garamond', serif;
@@ -419,9 +472,9 @@ st.markdown("""
         font-weight: 500;
     }
     .prob-track {
-        background: var(--surface-3);
-        border-radius: 0;
-        height: 4px;
+        background: var(--cream-mid);
+        border-radius: 3px;
+        height: 5px;
         width: 100%;
         overflow: hidden;
     }
@@ -429,27 +482,28 @@ st.markdown("""
     /* ── GEO CARDS ─────────────────────────────────────────────── */
     .geo-card {
         padding: 28px;
-        border-radius: 2px;
-        border: 1px solid var(--border);
-        background: var(--surface-2);
+        border-radius: 8px;
+        border: 1.5px solid var(--card-border);
+        background: rgba(255,255,255,0.85);
         text-align: center;
         position: relative;
         overflow: hidden;
         transition: all 0.3s;
+        box-shadow: 0 2px 12px var(--card-shadow);
     }
     .geo-card.active {
-        border-color: rgba(192,154,46,0.5);
-        background: var(--surface-3);
-        box-shadow: 0 0 40px rgba(192,154,46,0.06), inset 0 1px 0 rgba(240,192,64,0.15);
+        border-color: var(--amber-mid);
+        background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(253,239,195,0.6));
+        box-shadow: 0 6px 28px rgba(200,130,10,0.15);
     }
     .geo-card.active::before {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+        height: 3px;
+        background: linear-gradient(90deg, var(--amber-soft), var(--amber-mid), var(--amber-soft));
     }
-    .geo-card.inactive { opacity: 0.35; }
+    .geo-card.inactive { opacity: 0.40; }
     .geo-region {
         font-family: 'DM Mono', monospace;
         font-size: 10px;
@@ -460,7 +514,7 @@ st.markdown("""
     }
     .geo-pct {
         font-family: 'Playfair Display', serif;
-        font-size: 48px;
+        font-size: 52px;
         font-weight: 700;
         line-height: 1;
         margin-bottom: 6px;
@@ -469,7 +523,7 @@ st.markdown("""
         font-family: 'DM Mono', monospace;
         font-size: 9px;
         letter-spacing: 2px;
-        color: var(--gold-mid);
+        color: var(--amber-deep);
         text-transform: uppercase;
         margin-top: 10px;
     }
@@ -477,25 +531,15 @@ st.markdown("""
     /* ── DIVIDER ───────────────────────────────────────────────── */
     .sample-divider {
         height: 1px;
-        background: linear-gradient(90deg, transparent, var(--border), transparent);
+        background: linear-gradient(90deg, transparent, var(--amber-soft), transparent);
         margin: 48px 0;
-    }
-
-    /* ── UPLOAD SECTION TITLE ──────────────────────────────────── */
-    .upload-label {
-        font-family: 'DM Mono', monospace;
-        font-size: 10px;
-        letter-spacing: 3px;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        margin-bottom: 12px;
     }
 
     /* ── FOOTER ────────────────────────────────────────────────── */
     .footer {
         margin-top: 80px;
-        padding: 32px 0 16px 0;
-        border-top: 1px solid var(--border);
+        padding: 28px 0 16px 0;
+        border-top: 1.5px solid var(--amber-soft);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -504,18 +548,16 @@ st.markdown("""
     }
     .footer-left {
         font-family: 'DM Mono', monospace;
-        font-size: 11px;
-        color: var(--text-dim);
-        letter-spacing: 1px;
+        font-size: 10px;
+        color: var(--text-muted);
+        letter-spacing: 1.5px;
     }
     .footer-right {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 14px;
+        font-size: 15px;
         color: var(--text-muted);
     }
-    .footer-gold {
-        color: var(--gold-dark);
-    }
+    .footer-gold { color: var(--amber-deep); font-weight: 600; }
 
 </style>
 """, unsafe_allow_html=True)
@@ -527,7 +569,7 @@ T_MIN, T_MAX, N_PTS = -30.0, 190.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
 CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
 CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
-COLORES_AUTH = ["#4CAF7D", "#E05555", "#F0C040"]
+COLORES_AUTH = ["#2E7D40", "#C0392B", "#C8820A"]
 COLORES_GEO  = ["#C89A2E", "#8B5A2B"]
 
 # ═══════════════════════════════════════════════════════════════════
@@ -603,67 +645,59 @@ def extraer_features(dsc_curve, T=T_GRILLA):
     return feats
 
 # ═══════════════════════════════════════════════════════════════════
-#  GRÁFICA TERMOGRAMA — Estética dark luxury
+#  GRÁFICA TERMOGRAMA — Tema claro ámbar
 # ═══════════════════════════════════════════════════════════════════
 def graficar_termograma(dsc_curve, nombre, color_linea):
-    bg     = "#0D0D0D"
-    grid_c = "#222222"
-    tick_c = "#6A5A3A"
-    label_c= "#9A8A6A"
+    bg      = "#FFFDF4"
+    grid_c  = "#EDD89A"
+    tick_c  = "#9A7040"
+    label_c = "#7A5020"
 
     fig, ax = plt.subplots(figsize=(11, 3.8), facecolor=bg)
     ax.set_facecolor(bg)
     fig.patch.set_facecolor(bg)
 
-    # Zonas térmicas — muy sutiles
-    ax.axvspan(-30,  30, alpha=0.04, color="#5588AA", zorder=0)
-    ax.axvspan( 30, 100, alpha=0.04, color="#C89A2E", zorder=0)
-    ax.axvspan(100, 190, alpha=0.04, color="#AA4444", zorder=0)
+    # Zonas térmicas
+    ax.axvspan(-30,  30, alpha=0.07, color="#5599CC", zorder=0)
+    ax.axvspan( 30, 100, alpha=0.07, color="#E8A820", zorder=0)
+    ax.axvspan(100, 190, alpha=0.07, color="#CC5533", zorder=0)
 
-    # Líneas de zona
-    for x_line, lbl in [(-30,"−30"), (30,"30°"), (100,"100°"), (190,"190°")]:
-        ax.axvline(x_line, color=grid_c, linewidth=0.5, linestyle=":", zorder=1)
+    for x_line in [-30, 30, 100, 190]:
+        ax.axvline(x_line, color=grid_c, linewidth=0.6, linestyle=":", zorder=1)
 
-    # Línea cero
-    ax.axhline(0, color="#3A3A3A", linewidth=0.8, linestyle="-", zorder=2)
+    ax.axhline(0, color="#C4A46A", linewidth=0.9, linestyle="-", zorder=2)
 
-    # Curva principal con glow sutil
-    ax.plot(T_GRILLA, dsc_curve, color=color_linea, linewidth=1.8,
+    ax.plot(T_GRILLA, dsc_curve, color=color_linea, linewidth=2.0,
             zorder=5, solid_capstyle="round")
 
-    # Fill bajo la curva
     ax.fill_between(T_GRILLA, dsc_curve,
                     where=dsc_curve < 0,
-                    alpha=0.12, color=color_linea, zorder=3)
+                    alpha=0.15, color=color_linea, zorder=3)
     ax.fill_between(T_GRILLA, dsc_curve,
                     where=dsc_curve >= 0,
-                    alpha=0.05, color=color_linea, zorder=3)
+                    alpha=0.06, color=color_linea, zorder=3)
 
-    # Etiquetas de zona
     for x_c, lbl, c_lbl in [
-        (  0, "FUSIÓN",       "#5599BB"),
-        ( 65, "TRANSICIÓN",   "#C89A2E"),
-        (145, "CARAMELIZACIÓN","#AA5544"),
+        (  0, "FUSIÓN",        "#3377AA"),
+        ( 65, "TRANSICIÓN",    "#C8820A"),
+        (145, "CARAMELIZACIÓN","#AA4422"),
     ]:
-        ax.text(x_c, ax.get_ylim()[1] if ax.get_ylim()[1]!=0 else 0.1,
-                lbl, ha="center", va="top",
-                fontsize=7.5, color=c_lbl, alpha=0.55,
+        ax.text(x_c, 1.0, lbl,
+                ha="center", va="top",
+                fontsize=7.5, color=c_lbl, alpha=0.65,
                 fontfamily="monospace", fontweight="bold",
                 transform=ax.get_xaxis_transform(),
                 clip_on=True)
 
     ax.set_xlabel("Temperatura  (°C)", fontsize=10, color=label_c, labelpad=8)
     ax.set_ylabel("Flujo de calor  (mW/mg)", fontsize=10, color=label_c, labelpad=8)
-
     ax.tick_params(colors=tick_c, labelsize=9)
     for spine in ax.spines.values():
         spine.set_color(grid_c)
-        spine.set_linewidth(0.6)
-
-    ax.grid(True, color=grid_c, linewidth=0.4, linestyle="-", alpha=0.7)
+        spine.set_linewidth(0.8)
+    ax.grid(True, color=grid_c, linewidth=0.4, linestyle="-", alpha=0.6)
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(10))
     ax.tick_params(which="minor", length=2, color=grid_c)
-
     ax.set_xlim(-30, 190)
     plt.tight_layout(pad=0.8)
     return fig
@@ -688,12 +722,12 @@ with st.sidebar:
         <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:#5A4A2A; text-transform:uppercase; margin-bottom:14px;">
             Arquitectura
         </div>
-        <div style="padding: 14px 16px; background: rgba(192,154,46,0.04); border-left: 2px solid #C89A2E; margin-bottom: 8px; border-radius: 0 2px 2px 0;">
+        <div style="padding: 14px 16px; background: rgba(192,154,46,0.06); border-left: 2px solid #C89A2E; margin-bottom: 8px; border-radius: 0 4px 4px 0;">
             <div style="font-family:'DM Mono',monospace; font-size:9px; color:#8B6914; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 01</div>
             <div style="font-size:15px; font-weight:600; color:#F5EDD6; font-family:'Cormorant Garamond',serif;">Autenticidad</div>
             <div style="font-family:'DM Mono',monospace; font-size:10px; color:#5A4A2A; margin-top:3px;">SVM Lineal · Acc 98.39%</div>
         </div>
-        <div style="padding: 14px 16px; background: rgba(192,154,46,0.04); border-left: 2px solid #8B6914; margin-bottom: 8px; border-radius: 0 2px 2px 0;">
+        <div style="padding: 14px 16px; background: rgba(192,154,46,0.04); border-left: 2px solid #8B6914; margin-bottom: 8px; border-radius: 0 4px 4px 0;">
             <div style="font-family:'DM Mono',monospace; font-size:9px; color:#5A4A2A; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 02</div>
             <div style="font-size:15px; font-weight:600; color:#F5EDD6; font-family:'Cormorant Garamond',serif;">Origen Geográfico</div>
             <div style="font-family:'DM Mono',monospace; font-size:10px; color:#5A4A2A; margin-top:3px;">SVM+PCA · Acc 82.00%</div>
@@ -701,26 +735,25 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-    <div style="margin-bottom:20px;">
+    ICONOS_AUTH = ["◆", "◆", "◆"]
+    COLORES_SIDE = ["#4CAF7D", "#E05555", "#F0C040"]
+    st.markdown("""<div style="margin-bottom:20px;">
         <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:#5A4A2A; text-transform:uppercase; margin-bottom:12px;">Clases detectables</div>
     """, unsafe_allow_html=True)
-    ICONOS_AUTH = ["◆", "◆", "◆"]
-    for cls, col, ico in zip(CLASES_AUTH, COLORES_AUTH, ICONOS_AUTH):
+    for cls, col, ico in zip(CLASES_AUTH, COLORES_SIDE, ICONOS_AUTH):
         st.markdown(f"""
-        <div style="display:flex; align-items:center; gap:10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.03);">
+        <div style="display:flex; align-items:center; gap:10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);">
             <span style="color:{col}; font-size:7px;">{ico}</span>
             <span style="font-size:14px; color:#C8B89A; font-family:'Cormorant Garamond',serif;">{cls}</span>
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown("""
-    <div style="margin-top:20px; margin-bottom:20px;">
+    st.markdown("""<div style="margin-top:20px; margin-bottom:20px;">
         <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:3px; color:#5A4A2A; text-transform:uppercase; margin-bottom:12px;">Orígenes geográficos</div>
     """, unsafe_allow_html=True)
     for cls, col in zip(CLASES_GEO, COLORES_GEO):
         st.markdown(f"""
-        <div style="display:flex; align-items:center; gap:10px; padding: 7px 0 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.03);">
+        <div style="display:flex; align-items:center; gap:10px; padding: 7px 0 7px 12px; border-bottom: 1px solid rgba(255,255,255,0.04);">
             <span style="color:{col}; font-size:7px;">◆</span>
             <span style="font-size:13px; color:#8A7A5A; font-family:'Cormorant Garamond',serif;">{cls}</span>
         </div>""", unsafe_allow_html=True)
@@ -735,13 +768,26 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════════
-#  HERO — Abeja fotográfica estilo National Geographic
+#  HERO — Panal SVG claro
 # ═══════════════════════════════════════════════════════════════════
-st.markdown("""
+# Generar filas del panal en HTML
+def hex_rows_html(rows=5, cols=7):
+    html = ""
+    for r in range(rows):
+        offset = ' offset' if r % 2 == 1 else ''
+        html += f'<div class="hex-row{offset}">'
+        for _ in range(cols):
+            html += '<div class="hex"></div>'
+        html += '</div>'
+    return html
+
+st.markdown(f"""
 <div class="hero-wrapper">
     <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-grain"></div>
+    <div class="hero-accent-line"></div>
+    <div class="hero-honeycomb">
+        {hex_rows_html(6, 8)}
+    </div>
     <div class="hero-content">
         <div class="hero-eyebrow">Calorimetría diferencial de barrido · Machine Learning</div>
         <h1 class="hero-title">
@@ -813,13 +859,14 @@ archivos = st.file_uploader(
 
 if not archivos:
     st.markdown("""
-    <div style="padding: 48px; text-align:center; border: 1px dashed rgba(192,154,46,0.2); border-radius:2px; 
-         background: rgba(192,154,46,0.02); margin-top: 16px;">
-        <div style="font-size:40px; margin-bottom:16px; opacity:0.4;">⬡</div>
-        <div style="font-family:'Playfair Display',serif; font-size:20px; color:#6A5A3A; margin-bottom:8px;">
+    <div style="padding: 52px; text-align:center; border: 1.5px dashed rgba(200,130,10,0.30);
+         border-radius:8px; background: rgba(255,255,255,0.55); margin-top: 16px;
+         backdrop-filter: blur(4px);">
+        <div style="font-size:44px; margin-bottom:18px; opacity:0.5;">⬡</div>
+        <div style="font-family:'Playfair Display',serif; font-size:22px; color:#8B6020; margin-bottom:10px;">
             Sistema en espera
         </div>
-        <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; color:#3D2E0A; text-transform:uppercase;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2.5px; color:#C4A46A; text-transform:uppercase;">
             Seleccione o arrastre archivos .txt para iniciar el procesamiento
         </div>
     </div>
@@ -850,7 +897,7 @@ for i, archivo in enumerate(archivos):
     <div class="sample-header">
         <div class="sample-dot"></div>
         <div class="sample-name">{archivo.name.upper()}</div>
-        <div style="margin-left:auto; font-family:'DM Mono',monospace; font-size:10px; color:#3D2E0A; letter-spacing:2px;">
+        <div style="margin-left:auto; font-family:'DM Mono',monospace; font-size:10px; color:#C4A46A; letter-spacing:2px;">
             MUESTRA {str(i+1).zfill(2)}
         </div>
     </div>
@@ -866,7 +913,7 @@ for i, archivo in enumerate(archivos):
         dsc_interp = interpolar(df_raw)
 
         if dsc_interp is None:
-            st.error(f"El archivo no contiene el rango térmico completo requerido (−30 a 190 °C).")
+            st.error("El archivo no contiene el rango térmico completo requerido (−30 a 190 °C).")
             st.markdown("</div>", unsafe_allow_html=True)
             continue
 
@@ -886,8 +933,8 @@ for i, archivo in enumerate(archivos):
 
         st.markdown('<div class="level-badge">FASE 01 — Evaluación de Autenticidad</div>', unsafe_allow_html=True)
 
-        css_map   = ["resultado-real","resultado-adulterada","resultado-mezcla"]
-        icon_map  = ["✦", "⚠", "◉"]
+        css_map  = ["resultado-real","resultado-adulterada","resultado-mezcla"]
+        icon_map = ["✦", "⚠", "◉"]
         st.markdown(f"""
         <div class="resultado-base {css_map[pred]}">
             <div>
@@ -914,7 +961,7 @@ for i, archivo in enumerate(archivos):
                         <span class="prob-pct" style="color:{col};">{prob*100:.1f}%</span>
                     </div>
                     <div class="prob-track">
-                        <div style="background:{col}; width:{prob*100:.1f}%; height:100%;"></div>
+                        <div style="background:{col}; width:{prob*100:.1f}%; height:100%; border-radius:3px;"></div>
                     </div>
                 </div>"""
             bars_html += '</div>'
@@ -939,7 +986,7 @@ for i, archivo in enumerate(archivos):
                     <div class="geo-card {cls_card}">
                         <div class="geo-region">{cls}</div>
                         <div class="geo-pct" style="color:{color};">{prob*100:.1f}%</div>
-                        {"<div class='geo-winner-tag'>◆ Origen determinado</div>" if activo else ""}
+                        {"<div class='geo-winner-tag'>⬡ Origen determinado</div>" if activo else ""}
                     </div>
                     """, unsafe_allow_html=True)
 
@@ -948,7 +995,7 @@ for i, archivo in enumerate(archivos):
     finally:
         os.unlink(tmp_path)
 
-    st.markdown("</div>", unsafe_allow_html=True)  # cierra sample-body
+    st.markdown("</div>", unsafe_allow_html=True)
 
     if i < len(archivos) - 1:
         st.markdown('<div class="sample-divider"></div>', unsafe_allow_html=True)
