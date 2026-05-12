@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-import joblib, os, tempfile, base64
+import joblib, os, tempfile
 from scipy.interpolate import interp1d
 from scipy.signal import find_peaks
 from scipy.integrate import trapezoid
@@ -83,11 +83,7 @@ html, body, .stApp {
 .hero-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 56px 48px 52px;
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 64px;
-    align-items: center;
+    padding: 64px 48px 60px;
 }
 .hero-eyebrow {
     font-family: 'DM Sans', sans-serif;
@@ -142,77 +138,7 @@ html, body, .stApp {
     background: var(--bg);
 }
 
-/* ── LOGO SIDE ── */
-.hero-logo-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border-left: 1px solid var(--border);
-    padding-left: 64px;
-}
-.hero-logo-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: contain;
-    background: white;
-    padding: 6px;
-    border: 1px solid var(--border);
-}
-.hero-logo-text {
-    text-align: center;
-}
-.hero-logo-uni {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-    line-height: 1.5;
-}
-.hero-logo-grupo {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--ink-light);
-    margin-top: 4px;
-    line-height: 1.4;
-}
-.hero-arch {
-    width: 100%;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.arch-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px;
-}
-.arch-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--ink-light);
-}
-.arch-value {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    text-align: right;
-}
-.arch-acc {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--accent);
-}
+
 
 /* ── UPLOAD SECTION ── */
 .upload-wrap {
@@ -480,16 +406,6 @@ CLASES_GEO   = ["Eje Cafetero", "Orinoquía"]
 COLORES_AUTH = ["#1D9E75", "#E24B4A", "#7F77DD"]
 CSS_AUTH     = ["honey", "jarabe", "mezcla"]
 
-# ═══════════════════════════════════════════════════════════════════
-#  LOGO en base64
-# ═══════════════════════════════════════════════════════════════════
-def logo_b64():
-    base = os.path.dirname(__file__)
-    path = os.path.join(base, "logo_uniquindio.png")
-    if os.path.exists(path):
-        with open(path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
-    return None
 
 # ═══════════════════════════════════════════════════════════════════
 #  MODELOS
@@ -606,47 +522,22 @@ def graficar_termograma(dsc_curve, color_linea):
 # ═══════════════════════════════════════════════════════════════════
 #  HERO
 # ═══════════════════════════════════════════════════════════════════
-logo = logo_b64()
-logo_html = f'<img src="data:image/png;base64,{logo}" class="hero-logo-img" alt="Logo Universidad del Quindío">' \
-    if logo else '<div style="width:110px;height:110px;border-radius:50%;background:#F8F7F3;border:1px solid #E0DFDA;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8A8AA0;text-align:center;padding:12px;">UniQ</div>'
 
-st.markdown(f"""
+st.markdown("""
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Calorimetría diferencial de barrido · Machine Learning</div>
-      <h1 class="hero-title">Honey<em>Check</em></h1>
-      <div class="hero-rule"></div>
-      <p class="hero-desc">
-        Detección de adulteración y trazabilidad geográfica de mieles colombianas
-        mediante análisis DSC y modelos de clasificación supervisada.
-      </p>
-      <div class="hero-tags">
-        <span class="hero-tag">Sistema jerárquico v2.0</span>
-        <span class="hero-tag">NETZSCH DSC 214 Polyma</span>
-        <span class="hero-tag">SVM · PCA</span>
-      </div>
-    </div>
-    <div class="hero-logo-side">
-      {logo_html}
-      <div class="hero-logo-text">
-        <div class="hero-logo-uni">Universidad<br>del Quindío</div>
-        <div class="hero-logo-grupo">Grupo de Investigación<br>Plaguicidas y Salud</div>
-      </div>
-      <div class="hero-arch">
-        <div class="arch-row">
-          <span class="arch-label">Nivel 01 — Autenticidad</span>
-          <span class="arch-acc">98.39%</span>
-        </div>
-        <div class="arch-row">
-          <span class="arch-label">Nivel 02 — Origen</span>
-          <span class="arch-acc">82.00%</span>
-        </div>
-        <div class="arch-row">
-          <span class="arch-label">Muestras entrenamiento</span>
-          <span class="arch-value" style="font-size:13px; color:#1A1A2E;">62</span>
-        </div>
-      </div>
+    <div class="hero-eyebrow">Calorimetría diferencial de barrido · Machine Learning</div>
+    <h1 class="hero-title">Honey<em>Check</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">
+      Detección de adulteración y trazabilidad geográfica de mieles colombianas
+      mediante análisis DSC y modelos de clasificación supervisada.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">Sistema jerárquico v2.0</span>
+      <span class="hero-tag">NETZSCH DSC 214 Polyma</span>
+      <span class="hero-tag">SVM · PCA</span>
+      <span class="hero-tag">Universidad del Quindío</span>
     </div>
   </div>
 </div>
