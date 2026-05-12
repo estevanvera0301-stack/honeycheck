@@ -232,7 +232,7 @@ st.markdown("""
 # ═══════════════════════════════════════════════════════════════════
 #  CONSTANTES
 # ═══════════════════════════════════════════════════════════════════
-T_MIN, T_MAX, N_PTS = -30.0, 190.0, 1000
+T_MIN, T_MAX, N_PTS = -35.0, 195.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
 CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
 CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
@@ -286,7 +286,7 @@ def interpolar(df):
 def extraer_features(dsc_curve, T=T_GRILLA):
     feats = {}
     feats["enthalpy_total"] = trapezoid(dsc_curve, T)
-    for zona, (a, b) in [("low",(-30,30)),("mid",(30,100)),("high",(100,190))]:
+    for zona, (a, b) in [("low",(-35,35)),("mid",(35,105)),("high",(105,195))]:
         mask = (T>=a)&(T<=b)
         feats[f"enthalpy_{zona}"] = trapezoid(dsc_curve[mask], T[mask])
     feats["dsc_min"]        = np.min(dsc_curve)
@@ -572,7 +572,7 @@ for i, archivo in enumerate(archivos):
         dsc_interp = interpolar(df_raw)
 
         if dsc_interp is None:
-            st.error("El archivo no contiene el rango térmico completo requerido (−30 a 190 °C).")
+            st.error("El archivo no contiene el rango térmico completo requerido (−35 a 195 °C).")
             st.markdown("</div>", unsafe_allow_html=True)
             continue
 
