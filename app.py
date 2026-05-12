@@ -232,7 +232,7 @@ st.markdown("""
 # ═══════════════════════════════════════════════════════════════════
 #  CONSTANTES
 # ═══════════════════════════════════════════════════════════════════
-T_MIN, T_MAX, N_PTS = -30.0, 190.0, 1000
+T_MIN, T_MAX, N_PTS = -35.0, 195.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
 CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
 CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
