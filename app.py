@@ -453,7 +453,7 @@ def interpolar(df):
 def extraer_features(dsc_curve, T=T_GRILLA):
     feats = {}
     feats["enthalpy_total"] = trapezoid(dsc_curve, T)
-    for zona, (a, b) in [("low",(-30,30)),("mid",(30,100)),("high",(100,190))]:
+    for zona, (a, b) in [("low",(-35,35)),("mid",(35,105)),("high",(105,195))]:
         mask = (T>=a)&(T<=b)
         feats[f"enthalpy_{zona}"] = trapezoid(dsc_curve[mask], T[mask])
     feats["dsc_min"]        = np.min(dsc_curve)
