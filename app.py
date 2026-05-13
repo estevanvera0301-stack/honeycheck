@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -15,16 +16,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ═══════════════════════════════════════════════════════════════════
-#  CSS: MIEL VIVA — Sidebar nogal dorado, amarillo solar intenso
-# ═══════════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
 
     :root {
-        /* ── Sidebar — nogal cálido, NO negro ── */
         --sidebar-bg:       #5C3A00;
         --sidebar-card:     #8C5A10;
         --sidebar-accent:   #F5A800;
@@ -32,47 +29,30 @@ st.markdown("""
         --sidebar-text:     #FFF3B0;
         --sidebar-muted:    #C89040;
         --sidebar-border:   rgba(245,168,0,0.22);
-
-        /* ── Amarillos solares ── */
         --yellow-blaze:     #FFD000;
         --yellow-main:      #F5A800;
         --yellow-deep:      #C87800;
         --yellow-dark:      #7A4800;
         --yellow-darkest:   #3A2000;
-
-        /* ── Fondo crema nata ── */
         --cream-purest:     #FFFCE8;
         --cream-base:       #FFF8D8;
         --cream-mid:        #FFF0A8;
         --cream-deep:       #FFE870;
-
-        /* ── Texto oscuro cálido ── */
         --text-primary:     #2A1400;
         --text-body:        #4A2800;
         --text-muted:       #906030;
-
-        /* ── Bordes solares ── */
         --border-yellow:    rgba(245,168,0,0.35);
         --border-mid:       rgba(245,168,0,0.55);
         --border-soft:      rgba(245,168,0,0.18);
-
-        /* ── Sombras cálidas ── */
         --shadow-warm:      rgba(42,20,0,0.09);
         --shadow-deep:      rgba(42,20,0,0.16);
-
-        /* ── Acento verde autenticidad ── */
         --green-bg:         #EAF7EC;
         --green-border:     rgba(30,100,48,0.28);
-
-        /* ── Acento rojo adulterada ── */
         --red-bg:           #FAEEE8;
         --red-border:       rgba(160,48,32,0.26);
-
-        /* ── Patrón abeja — amarillo solar muy tenue ── */
         --bee-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' stroke='%23F5A800' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none' opacity='0.07'%3E%3Cpath d='M92,60 Q80,45 92,35 M108,60 Q120,45 108,35'/%3E%3Cpath d='M88,72 A 12 12 0 0 1 112,72'/%3E%3Ccircle cx='100' cy='95' r='16'/%3E%3Cpath d='M85,110 Q 75,140 100,165 Q 125,140 115,110 Z'/%3E%3Cpath d='M83,125 Q 100,135 117,125 M88,140 Q 100,150 112,140'/%3E%3Cpath d='M 82,90 L 25,50 L 15,65 L 60,105 L 82,100 Z'/%3E%3Cpath d='M 25,50 L 50,90 L 15,65 M 50,90 L 60,105'/%3E%3Cpath d='M 78,108 L 40,125 L 55,140 L 82,118 Z'/%3E%3Cpath d='M 40,125 L 75,114'/%3E%3Cpath d='M 118,90 L 175,50 L 185,65 L 140,105 L 118,100 Z'/%3E%3Cpath d='M 175,50 L 150,90 L 185,65 M 150,90 L 140,105'/%3E%3Cpath d='M 122,108 L 160,125 L 145,140 L 118,118 Z'/%3E%3Cpath d='M 160,125 L 125,114'/%3E%3C/svg%3E");
     }
 
-    /* ── TIPOGRAFÍA GLOBAL ── */
     html, body, div, p, h1, h2, h3, h4, h5, h6, label, button, ul, li {
         font-family: 'Cormorant Garamond', serif !important;
         font-variant-numeric: lining-nums !important;
@@ -83,7 +63,24 @@ st.markdown("""
         font-family: "Material Symbols Rounded", sans-serif !important;
     }
 
-    /* ── FONDO PRINCIPAL — crema nata luminosa ── */
+    /* ── BARRA SUPERIOR STREAMLIT — transparente sobre el fondo crema ── */
+    [data-testid="stHeader"],
+    header[data-testid="stHeader"],
+    .stAppHeader,
+    header.stAppHeader {
+        background-color: var(--cream-base) !important;
+        background-image: none !important;
+        border-bottom: 1px solid var(--border-yellow) !important;
+        box-shadow: 0 1px 8px rgba(42,20,0,0.06) !important;
+    }
+    [data-testid="stHeader"] button,
+    [data-testid="stHeader"] svg,
+    [data-testid="stHeader"] [data-testid="baseButton-header"] {
+        color: var(--yellow-deep) !important;
+        stroke: var(--yellow-deep) !important;
+    }
+
+    /* ── FONDO PRINCIPAL ── */
     .stApp {
         background-color: var(--cream-base) !important;
         background-image:
@@ -96,17 +93,14 @@ st.markdown("""
         background-attachment: fixed !important;
         color: var(--text-primary) !important;
     }
-    /* ── ENCABEZADO STREAMLIT TRANSPARENTE ── */
-    [data-testid="stHeader"] {
-        background-color: transparent !important;
-    }
+
     .block-container {
         padding-top: 3rem !important;
         padding-bottom: 3rem !important;
         max-width: 1400px;
     }
 
-    /* ── SIDEBAR — nogal dorado, no negro ── */
+    /* ── SIDEBAR ── */
     [data-testid="stSidebar"] {
         background-color: var(--sidebar-bg) !important;
         border-right: 1px solid var(--sidebar-border) !important;
@@ -118,17 +112,33 @@ st.markdown("""
     }
     [data-testid="stSidebar"] * { color: var(--sidebar-text) !important; }
 
-    /* ── UPLOAD ZONE ── */
-    [data-testid="stFileUploadDropzone"] {
-        background-color: rgba(255,255,255,0.80) !important;
+    /* ── UPLOAD ZONE — forzar fondo claro en todos los modos ── */
+    [data-testid="stFileUploadDropzone"],
+    [data-testid="stFileUploader"],
+    section[data-testid="stFileUploadDropzone"],
+    div[data-testid="stFileUploadDropzone"] {
+        background-color: rgba(255, 252, 232, 0.95) !important;
         border: 1.5px dashed var(--border-yellow) !important;
         border-radius: 6px !important;
         transition: all 0.3s ease;
+        color: var(--text-primary) !important;
     }
     [data-testid="stFileUploadDropzone"]:hover {
         border-color: var(--yellow-main) !important;
-        background-color: rgba(255,252,232,0.96) !important;
-        box-shadow: 0 0 24px rgba(255,208,0,0.18);
+        background-color: rgba(255,252,232,0.98) !important;
+        box-shadow: 0 0 24px rgba(255,208,0,0.18) !important;
+    }
+    /* Texto y botón dentro del uploader */
+    [data-testid="stFileUploadDropzone"] *,
+    [data-testid="stFileUploader"] * {
+        color: var(--text-body) !important;
+    }
+    [data-testid="stFileUploadDropzone"] button,
+    [data-testid="stFileUploaderDropzoneInstructions"] button {
+        background-color: var(--yellow-main) !important;
+        color: var(--yellow-darkest) !important;
+        border: none !important;
+        border-radius: 4px !important;
     }
     [data-testid="stAlert"] { display: none !important; }
 
@@ -163,15 +173,18 @@ st.markdown("""
 
     /* ── STAT CARDS ── */
     .stats-row {
-        display: grid; grid-template-columns: repeat(4, 1fr);
-        gap: 14px; margin: 32px 0 40px 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin: 32px 0 40px 0;
     }
     .stat-cell {
-        background: #FFFFFF; padding: 26px 20px; text-align: center;
+        background: #FFFFFF; padding: 26px 16px; text-align: center;
         border: 1px solid var(--border-yellow); border-radius: 6px;
         box-shadow: 0 2px 16px var(--shadow-warm);
         position: relative; overflow: hidden;
         transition: transform 0.2s, box-shadow 0.2s;
+        min-width: 0;
     }
     .stat-cell::before {
         content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
@@ -184,17 +197,31 @@ st.markdown("""
     }
     .stat-value {
         display: flex; align-items: baseline; justify-content: center; gap: 2px;
-        line-height: 1; min-height: 55px;
+        line-height: 1; min-height: 48px; flex-wrap: wrap;
     }
-    .stat-num, .stat-unit {
-        font-size: 42px !important;
+    .stat-num {
+        font-size: clamp(22px, 4vw, 42px) !important;
         font-weight: 700;
         color: var(--yellow-deep);
         letter-spacing: -1px;
+        word-break: break-all;
+    }
+    .stat-unit {
+        font-size: clamp(18px, 3vw, 38px) !important;
+        font-weight: 700;
+        color: var(--yellow-deep);
     }
     .stat-label {
-        font-size: 10px; letter-spacing: 2px; color: var(--text-muted);
-        text-transform: uppercase; margin-top: 14px; font-weight: 600;
+        font-size: clamp(8px, 1.5vw, 10px);
+        letter-spacing: 1.5px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin-top: 12px;
+        font-weight: 600;
+        line-height: 1.4;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     /* ── SECTION HEADERS ── */
@@ -202,27 +229,29 @@ st.markdown("""
         display: flex; align-items: center; gap: 16px;
         margin: 40px 0 24px 0; padding-bottom: 14px;
         border-bottom: 1.5px solid var(--border-yellow);
+        flex-wrap: wrap;
     }
     .section-number {
         font-size: 12px; font-weight: bold; color: var(--yellow-deep);
         letter-spacing: 2px; background: rgba(255,208,0,0.18);
-        padding: 4px 10px; border-radius: 2px;
+        padding: 4px 10px; border-radius: 2px; flex-shrink: 0;
     }
     .section-title {
-        font-size: 24px; font-weight: 700;
+        font-size: clamp(18px, 3vw, 24px); font-weight: 700;
         color: var(--text-primary) !important; margin: 0;
     }
     .section-line {
-        flex: 1; height: 1px;
+        flex: 1; height: 1px; min-width: 20px;
         background: linear-gradient(90deg, var(--border-yellow), transparent);
     }
 
     /* ── TARJETAS DE MUESTRAS ── */
     .sample-header {
-        display: flex; align-items: center; gap: 14px; padding: 16px 24px;
+        display: flex; align-items: center; gap: 14px; padding: 16px 20px;
         background: linear-gradient(90deg, rgba(255,255,255,0.97), rgba(255,252,232,0.85));
         border: 1.5px solid var(--border-yellow); border-bottom: none;
         border-radius: 8px 8px 0 0; margin-top: 28px;
+        flex-wrap: wrap;
     }
     .sample-dot {
         width: 10px; height: 10px; border-radius: 50%;
@@ -232,10 +261,11 @@ st.markdown("""
     .sample-name {
         font-size: 14px; font-weight: 600;
         color: var(--text-primary); letter-spacing: 1px;
+        word-break: break-all;
     }
     .sample-body {
         border: 1.5px solid var(--border-yellow); border-top: none;
-        border-radius: 0 0 8px 8px; padding: 28px;
+        border-radius: 0 0 8px 8px; padding: 20px;
         background: rgba(255,255,255,0.92); backdrop-filter: blur(4px);
         box-shadow: 0 4px 24px var(--shadow-warm);
     }
@@ -251,8 +281,9 @@ st.markdown("""
 
     /* ── RESULTADOS ── */
     .resultado-base {
-        padding: 22px 28px; border-radius: 6px; margin: 10px 0 20px 0;
+        padding: 20px 24px; border-radius: 6px; margin: 10px 0 20px 0;
         display: flex; align-items: center; justify-content: space-between; border: 1.5px solid;
+        flex-wrap: wrap; gap: 12px;
     }
     .resultado-real {
         background: linear-gradient(135deg, var(--green-bg), rgba(255,255,255,0.97));
@@ -273,7 +304,7 @@ st.markdown("""
         font-size: 11px; font-weight: 600; letter-spacing: 2px;
         color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px;
     }
-    .res-value { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+    .res-value { font-size: clamp(20px, 4vw, 28px); font-weight: 700; color: var(--text-primary); }
     .res-icon { font-size: 36px; opacity: 0.85; }
 
     /* ── PROBABILIDADES ── */
@@ -289,9 +320,9 @@ st.markdown("""
     .prob-row { margin: 14px 0; }
     .prob-row-top {
         display: flex; justify-content: space-between;
-        align-items: baseline; margin-bottom: 7px;
+        align-items: baseline; margin-bottom: 7px; flex-wrap: wrap; gap: 4px;
     }
-    .prob-cls { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+    .prob-cls { font-size: 15px; font-weight: 600; color: var(--text-primary); }
     .prob-pct { font-size: 15px; font-weight: 700; }
     .prob-track {
         background: var(--cream-mid); border-radius: 3px;
@@ -300,7 +331,7 @@ st.markdown("""
 
     /* ── GEO CARDS ── */
     .geo-card {
-        padding: 28px; border-radius: 8px; border: 1.5px solid var(--border-soft);
+        padding: 24px 16px; border-radius: 8px; border: 1.5px solid var(--border-soft);
         background: #FFFFFF; text-align: center; position: relative;
         overflow: hidden; transition: all 0.3s;
         box-shadow: 0 2px 12px var(--shadow-warm);
@@ -319,7 +350,7 @@ st.markdown("""
         font-size: 11px; font-weight: 600; letter-spacing: 2px;
         text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
     }
-    .geo-pct { font-size: 52px !important; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+    .geo-pct { font-size: clamp(36px, 8vw, 52px) !important; font-weight: 700; line-height: 1; margin-bottom: 6px; }
     .geo-winner-tag {
         font-size: 10px; font-weight: 600; letter-spacing: 2px;
         color: var(--yellow-deep); text-transform: uppercase; margin-top: 10px;
@@ -341,6 +372,76 @@ st.markdown("""
     .footer-left { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; }
     .footer-right { font-size: 16px; font-weight: 600; color: var(--text-muted); }
     .footer-gold { color: var(--yellow-deep); font-weight: 700; }
+
+    /* ══════════════════════════════════════════════════════════════
+       📱 RESPONSIVE MÓVIL
+    ══════════════════════════════════════════════════════════════ */
+    @media screen and (max-width: 768px) {
+        .block-container {
+            padding-top: 1.5rem !important;
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
+        }
+
+        /* Estadísticas: 2 columnas en lugar de 4 */
+        .stats-row {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+            margin: 20px 0 28px 0 !important;
+        }
+        .stat-cell {
+            padding: 18px 10px !important;
+        }
+        .stat-num {
+            font-size: 28px !important;
+        }
+        .stat-unit {
+            font-size: 24px !important;
+        }
+        .stat-label {
+            font-size: 9px !important;
+            letter-spacing: 1px !important;
+            margin-top: 10px !important;
+        }
+
+        /* Hero */
+        .logo-brand {
+            font-size: 42px !important;
+        }
+
+        /* Resultados: columna en móvil */
+        .resultado-base {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 10px !important;
+            padding: 16px !important;
+        }
+
+        /* Footer */
+        .footer {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 6px !important;
+        }
+
+        /* Upload: asegurar fondo claro también en móvil */
+        [data-testid="stFileUploadDropzone"],
+        [data-testid="stFileUploader"] {
+            background-color: rgba(255, 252, 232, 0.97) !important;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .stats-row {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .stat-num {
+            font-size: 24px !important;
+        }
+        .stat-label {
+            font-size: 8px !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -555,7 +656,7 @@ st.markdown("""
   background:linear-gradient(180deg, transparent, #FFD000, #F5A800, #FFD000, transparent); z-index:6;"></div>
 
 <div style="position:absolute; right:60px; top:50%; transform:translateY(-50%);
-  width:340px; height:340px; opacity:0.16; pointer-events:none; z-index:5;">
+  width:280px; height:280px; opacity:0.14; pointer-events:none; z-index:5;">
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
   stroke="#F5A800" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"
   style="width:100%; height:100%;">
@@ -575,21 +676,21 @@ st.markdown("""
 </svg>
 </div>
 
-<div style="position:relative; z-index:10; padding:52px 56px; width:100%; max-width:680px;">
-<div style="font-size:15px; font-weight:700; letter-spacing:2px; color:#C87800; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
+<div style="position:relative; z-index:10; padding:40px 36px; width:100%; max-width:680px;">
+<div style="font-size:13px; font-weight:700; letter-spacing:2px; color:#C87800; text-transform:uppercase; margin-bottom:14px; opacity:0.9;">
 Calorimetría diferencial de barrido · Machine Learning
 </div>
-<div class="logo-brand" style="font-size:clamp(52px,6vw,84px); font-weight:900; line-height:0.90; color:#2A1400; letter-spacing:-1.5px; margin:0 0 6px 0;">
+<div class="logo-brand" style="font-size:clamp(40px,6vw,84px); font-weight:900; line-height:0.90; color:#2A1400; letter-spacing:-1.5px; margin:0 0 6px 0;">
 Honey<span style="color:#F5A800; font-style:italic;">Check</span>
 </div>
-<div style="width:72px; height:3px; margin:22px 0; background:linear-gradient(90deg,#FFD000,#F5A800,transparent); border-radius:1px;"></div>
-<p style="font-size:20px; font-weight:600; color:#4A2800; margin:0 0 30px 0; max-width:500px; line-height:1.55;">
+<div style="width:72px; height:3px; margin:18px 0; background:linear-gradient(90deg,#FFD000,#F5A800,transparent); border-radius:1px;"></div>
+<p style="font-size:clamp(15px,2.5vw,20px); font-weight:600; color:#4A2800; margin:0 0 24px 0; max-width:500px; line-height:1.55;">
 Detección de adulteración y trazabilidad geográfica de mieles colombianas mediante análisis DSC y modelos de clasificación supervisada.
 </p>
-<div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">SISTEMA JERÁRQUICO V2.0</span>
-<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">UNIVERSIDAD DEL QUINDÍO</span>
-<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">NETZSCH DSC 214 POLYMA</span>
+<div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+<span style="font-size:11px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:6px 12px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">SISTEMA JERÁRQUICO V2.0</span>
+<span style="font-size:11px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:6px 12px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">UNIVERSIDAD DEL QUINDÍO</span>
+<span style="font-size:11px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:6px 12px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">NETZSCH DSC 214 POLYMA</span>
 </div>
 </div>
 </div>
@@ -602,19 +703,19 @@ st.markdown("""
 <div class="stats-row">
     <div class="stat-cell">
         <div class="stat-value"><span class="stat-num">98.4</span><span class="stat-unit">%</span></div>
-        <div class="stat-label">Precisión · Autenticidad</div>
+        <div class="stat-label">Precisión Autenticidad</div>
     </div>
     <div class="stat-cell">
         <div class="stat-value"><span class="stat-num">82.0</span><span class="stat-unit">%</span></div>
-        <div class="stat-label">Precisión · Origen</div>
+        <div class="stat-label">Precisión Origen</div>
     </div>
     <div class="stat-cell">
         <div class="stat-value"><span class="stat-num">62</span></div>
-        <div class="stat-label">Muestras de entrenamiento</div>
+        <div class="stat-label">Muestras Entrenamiento</div>
     </div>
     <div class="stat-cell">
         <div class="stat-value"><span class="stat-num">p&lt;0.001</span></div>
-        <div class="stat-label">Confianza estadística</div>
+        <div class="stat-label">Confianza Estadística</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -656,7 +757,7 @@ archivos = st.file_uploader(
 
 if not archivos:
     st.markdown("""
-    <div style="padding:52px; text-align:center; border:1.5px dashed rgba(255,208,0,0.30); border-radius:8px; background:rgba(255,255,255,0.65); margin-top:16px;">
+    <div style="padding:52px 20px; text-align:center; border:1.5px dashed rgba(255,208,0,0.30); border-radius:8px; background:rgba(255,255,255,0.65); margin-top:16px;">
         <div style="font-size:44px; margin-bottom:18px; opacity:0.38; color:#F5A800;">⬡</div>
         <div style="font-size:24px; font-weight:700; color:#906030; margin-bottom:10px;">Sistema en espera</div>
         <div style="font-size:12px; font-weight:600; letter-spacing:2.5px; color:#C8A050; text-transform:uppercase;">
@@ -799,54 +900,4 @@ st.markdown("""
     <div class="footer-left">HONEYCHECK · SISTEMA JERÁRQUICO V2.0 · © 2024</div>
     <div class="footer-right">Universidad del Quindío <span class="footer-gold">— Grupo Plaguicidas y Salud</span></div>
 </div>
-/* ── 📱 ADAPTACIÓN PARA DISPOSITIVOS MÓVILES (RESPONSIVE) ── */
-    @media screen and (max-width: 768px) {
-        /* 1. Reducir márgenes del contenedor principal */
-        .block-container {
-            padding-top: 1.5rem !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
-        }
-
-        /* 2. Tarjetas de Estadísticas: pasar de 4 columnas a 2 */
-        .stats-row {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 12px !important;
-            margin: 24px 0 !important;
-        }
-
-        /* 3. Sección principal (Hero): Ajustar padding, textos y la abeja de fondo */
-        div[style*="padding:52px 56px"] {
-            padding: 32px 20px !important;
-        }
-        div[style*="width:340px; height:340px;"] {
-            width: 180px !important;
-            height: 180px !important;
-            right: -10px !important;
-            opacity: 0.10 !important;
-        }
-        .logo-brand {
-            font-size: 48px !important; 
-        }
-
-        /* 4. Tarjetas de Resultados y Muestras */
-        .sample-header, .sample-body {
-            padding: 16px !important;
-        }
-        .resultado-base {
-            flex-direction: column !important;
-            text-align: center !important;
-            gap: 12px !important;
-        }
-        .res-icon {
-            margin-top: 8px;
-        }
-
-        /* 5. Acomodar el pie de página (Footer) */
-        .footer {
-            flex-direction: column !important;
-            text-align: center !important;
-            gap: 8px !important;
-        }
-    }
 """, unsafe_allow_html=True)
