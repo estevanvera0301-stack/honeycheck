@@ -96,7 +96,10 @@ st.markdown("""
         background-attachment: fixed !important;
         color: var(--text-primary) !important;
     }
-
+    /* ── ENCABEZADO STREAMLIT TRANSPARENTE ── */
+    [data-testid="stHeader"] {
+        background-color: transparent !important;
+    }
     .block-container {
         padding-top: 3rem !important;
         padding-bottom: 3rem !important;
