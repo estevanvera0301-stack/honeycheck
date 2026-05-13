@@ -16,7 +16,7 @@ st.set_page_config(
 )
 
 # ═══════════════════════════════════════════════════════════════════
-#  CSS: ÁMBAR CLÁSICO REFINADO
+#  CSS: MIEL VIVA — Sidebar nogal dorado, amarillo solar intenso
 # ═══════════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
@@ -24,52 +24,52 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
 
     :root {
-        /* ── Cremas base — más limpias y unificadas que la versión original ── */
-        --cream-purest:   #FEFCF5;
-        --cream-lightest: #FDF9EE;
-        --cream-base:     #FAF4E0;
-        --cream-mid:      #F5ECC8;
-        --cream-deep:     #EDD9A0;
+        /* ── Sidebar — nogal cálido, NO negro ── */
+        --sidebar-bg:       #5C3A00;
+        --sidebar-card:     #8C5A10;
+        --sidebar-accent:   #F5A800;
+        --sidebar-gold:     #FFD000;
+        --sidebar-text:     #FFF3B0;
+        --sidebar-muted:    #C89040;
+        --sidebar-border:   rgba(245,168,0,0.22);
 
-        /* ── Ámbar — rango más definido y contrastado ── */
-        --amber-glow:     #F2C84A;
-        --amber-main:     #D4961C;
-        --amber-deep:     #AA7408;
-        --amber-dark:     #7A5200;
-        --amber-darkest:  #4A3000;
+        /* ── Amarillos solares ── */
+        --yellow-blaze:     #FFD000;
+        --yellow-main:      #F5A800;
+        --yellow-deep:      #C87800;
+        --yellow-dark:      #7A4800;
+        --yellow-darkest:   #3A2000;
 
-        /* ── Texto — marrón cálido más legible ── */
-        --text-primary:   #2E1A00;
-        --text-body:      #4A2E08;
-        --text-muted:     #8A6030;
+        /* ── Fondo crema nata ── */
+        --cream-purest:     #FFFCE8;
+        --cream-base:       #FFF8D8;
+        --cream-mid:        #FFF0A8;
+        --cream-deep:       #FFE870;
 
-        /* ── Bordes refinados — sin exceso de saturación ── */
-        --border-amber:   rgba(212,150,28,0.28);
-        --border-mid:     rgba(212,150,28,0.45);
-        --border-soft:    rgba(212,150,28,0.15);
+        /* ── Texto oscuro cálido ── */
+        --text-primary:     #2A1400;
+        --text-body:        #4A2800;
+        --text-muted:       #906030;
+
+        /* ── Bordes solares ── */
+        --border-yellow:    rgba(245,168,0,0.35);
+        --border-mid:       rgba(245,168,0,0.55);
+        --border-soft:      rgba(245,168,0,0.18);
 
         /* ── Sombras cálidas ── */
-        --shadow-warm:    rgba(46,26,0,0.09);
-        --shadow-deep:    rgba(46,26,0,0.16);
-
-        /* ── Sidebar oscura refinada ── */
-        --sidebar-bg:     #0E0800;
-        --sidebar-card:   #1C1200;
-        --sidebar-border: rgba(212,150,28,0.18);
-        --sidebar-gold:   #E8B830;
-        --sidebar-text:   #F0DFB0;
-        --sidebar-muted:  #906830;
+        --shadow-warm:      rgba(42,20,0,0.09);
+        --shadow-deep:      rgba(42,20,0,0.16);
 
         /* ── Acento verde autenticidad ── */
-        --green-bg:       #EBF5EC;
-        --green-border:   rgba(38,110,48,0.28);
+        --green-bg:         #EAF7EC;
+        --green-border:     rgba(30,100,48,0.28);
 
         /* ── Acento rojo adulterada ── */
-        --red-bg:         #F8EEEE;
-        --red-border:     rgba(148,40,40,0.26);
+        --red-bg:           #FAEEE8;
+        --red-border:       rgba(160,48,32,0.26);
 
-        /* ── Patrón de abejas — ámbar muy limpio ── */
-        --bee-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' stroke='%23D4961C' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none' opacity='0.055'%3E%3Cpath d='M92,60 Q80,45 92,35 M108,60 Q120,45 108,35'/%3E%3Cpath d='M88,72 A 12 12 0 0 1 112,72'/%3E%3Ccircle cx='100' cy='95' r='16'/%3E%3Cpath d='M85,110 Q 75,140 100,165 Q 125,140 115,110 Z'/%3E%3Cpath d='M83,125 Q 100,135 117,125 M88,140 Q 100,150 112,140'/%3E%3Cpath d='M 82,90 L 25,50 L 15,65 L 60,105 L 82,100 Z'/%3E%3Cpath d='M 25,50 L 50,90 L 15,65 M 50,90 L 60,105'/%3E%3Cpath d='M 78,108 L 40,125 L 55,140 L 82,118 Z'/%3E%3Cpath d='M 40,125 L 75,114'/%3E%3Cpath d='M 118,90 L 175,50 L 185,65 L 140,105 L 118,100 Z'/%3E%3Cpath d='M 175,50 L 150,90 L 185,65 M 150,90 L 140,105'/%3E%3Cpath d='M 122,108 L 160,125 L 145,140 L 118,118 Z'/%3E%3Cpath d='M 160,125 L 125,114'/%3E%3C/svg%3E");
+        /* ── Patrón abeja — amarillo solar muy tenue ── */
+        --bee-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' stroke='%23F5A800' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none' opacity='0.07'%3E%3Cpath d='M92,60 Q80,45 92,35 M108,60 Q120,45 108,35'/%3E%3Cpath d='M88,72 A 12 12 0 0 1 112,72'/%3E%3Ccircle cx='100' cy='95' r='16'/%3E%3Cpath d='M85,110 Q 75,140 100,165 Q 125,140 115,110 Z'/%3E%3Cpath d='M83,125 Q 100,135 117,125 M88,140 Q 100,150 112,140'/%3E%3Cpath d='M 82,90 L 25,50 L 15,65 L 60,105 L 82,100 Z'/%3E%3Cpath d='M 25,50 L 50,90 L 15,65 M 50,90 L 60,105'/%3E%3Cpath d='M 78,108 L 40,125 L 55,140 L 82,118 Z'/%3E%3Cpath d='M 40,125 L 75,114'/%3E%3Cpath d='M 118,90 L 175,50 L 185,65 L 140,105 L 118,100 Z'/%3E%3Cpath d='M 175,50 L 150,90 L 185,65 M 150,90 L 140,105'/%3E%3Cpath d='M 122,108 L 160,125 L 145,140 L 118,118 Z'/%3E%3Cpath d='M 160,125 L 125,114'/%3E%3C/svg%3E");
     }
 
     /* ── TIPOGRAFÍA GLOBAL ── */
@@ -83,14 +83,14 @@ st.markdown("""
         font-family: "Material Symbols Rounded", sans-serif !important;
     }
 
-    /* ── FONDO PRINCIPAL ── */
+    /* ── FONDO PRINCIPAL — crema nata luminosa ── */
     .stApp {
         background-color: var(--cream-base) !important;
         background-image:
             var(--bee-pattern),
-            radial-gradient(ellipse 60% 50% at 92% 8%,  rgba(242,200,74,0.14) 0%, transparent 62%),
-            radial-gradient(ellipse 42% 36% at 4%  88%,  rgba(212,150,28,0.09) 0%, transparent 55%),
-            linear-gradient(158deg, var(--cream-purest) 0%, var(--cream-lightest) 38%, var(--cream-base) 68%, var(--cream-mid) 100%) !important;
+            radial-gradient(ellipse 62% 52% at 92% 6%,  rgba(255,208,0,0.18) 0%, transparent 62%),
+            radial-gradient(ellipse 44% 38% at 4%  88%,  rgba(245,168,0,0.12) 0%, transparent 55%),
+            linear-gradient(158deg, var(--cream-purest) 0%, var(--cream-base) 45%, var(--cream-mid) 100%) !important;
         background-repeat: repeat, no-repeat, no-repeat, no-repeat !important;
         background-size: 120px 120px, cover, cover, cover !important;
         background-attachment: fixed !important;
@@ -103,55 +103,55 @@ st.markdown("""
         max-width: 1400px;
     }
 
-    /* ── SIDEBAR ── */
+    /* ── SIDEBAR — nogal dorado, no negro ── */
     [data-testid="stSidebar"] {
         background-color: var(--sidebar-bg) !important;
         border-right: 1px solid var(--sidebar-border) !important;
     }
     [data-testid="stSidebar"]::before {
         content: '';
-        position: absolute; top: 0; left: 0; right: 0; height: 2px;
-        background: linear-gradient(90deg, transparent, var(--sidebar-gold), transparent);
+        position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, transparent, var(--sidebar-gold), #FFE85A, var(--sidebar-gold), transparent);
     }
     [data-testid="stSidebar"] * { color: var(--sidebar-text) !important; }
 
     /* ── UPLOAD ZONE ── */
     [data-testid="stFileUploadDropzone"] {
-        background-color: rgba(255,255,255,0.78) !important;
-        border: 1.5px dashed var(--border-amber) !important;
+        background-color: rgba(255,255,255,0.80) !important;
+        border: 1.5px dashed var(--border-yellow) !important;
         border-radius: 6px !important;
         transition: all 0.3s ease;
     }
     [data-testid="stFileUploadDropzone"]:hover {
-        border-color: var(--amber-main) !important;
-        background-color: rgba(253,249,238,0.95) !important;
-        box-shadow: 0 0 20px rgba(212,150,28,0.10);
+        border-color: var(--yellow-main) !important;
+        background-color: rgba(255,252,232,0.96) !important;
+        box-shadow: 0 0 24px rgba(255,208,0,0.18);
     }
     [data-testid="stAlert"] { display: none !important; }
 
     /* ── BARRA DE ESTADO ── */
     .status-bar {
         display: flex; align-items: center; gap: 14px; padding: 12px 22px;
-        background: linear-gradient(90deg, rgba(212,150,28,0.10), rgba(242,200,74,0.04), transparent);
-        border-left: 3px solid var(--amber-main); border-radius: 0 4px 4px 0;
+        background: linear-gradient(90deg, rgba(255,208,0,0.14), rgba(245,168,0,0.05), transparent);
+        border-left: 3px solid var(--yellow-main); border-radius: 0 4px 4px 0;
         margin: 20px 0 8px 0;
     }
     .status-dot {
         width: 7px; height: 7px; border-radius: 50%;
-        background: var(--amber-main);
-        box-shadow: 0 0 8px rgba(212,150,28,0.55); flex-shrink: 0;
+        background: var(--yellow-main);
+        box-shadow: 0 0 10px rgba(255,208,0,0.70); flex-shrink: 0;
         animation: pulse-dot 2.5s ease-in-out infinite;
     }
     @keyframes pulse-dot {
-        0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(212,150,28,0.55); }
-        50%       { opacity: 0.55; box-shadow: 0 0 14px rgba(212,150,28,0.22); }
+        0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(255,208,0,0.70); }
+        50%       { opacity: 0.55; box-shadow: 0 0 18px rgba(255,208,0,0.28); }
     }
     .status-text {
-        font-size: 11px; letter-spacing: 2px; color: var(--amber-dark);
+        font-size: 11px; letter-spacing: 2px; color: var(--yellow-dark);
         text-transform: uppercase; font-weight: 600;
     }
-    .status-bar-warn { border-left-color: var(--amber-deep); }
-    .status-bar-warn .status-dot { background: var(--amber-deep); animation: none; }
+    .status-bar-warn { border-left-color: var(--yellow-deep); }
+    .status-bar-warn .status-dot { background: var(--yellow-deep); animation: none; }
 
     /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 5px; }
@@ -165,18 +165,18 @@ st.markdown("""
     }
     .stat-cell {
         background: #FFFFFF; padding: 26px 20px; text-align: center;
-        border: 1px solid var(--border-amber); border-radius: 6px;
+        border: 1px solid var(--border-yellow); border-radius: 6px;
         box-shadow: 0 2px 16px var(--shadow-warm);
         position: relative; overflow: hidden;
         transition: transform 0.2s, box-shadow 0.2s;
     }
     .stat-cell::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-        background: linear-gradient(90deg, var(--cream-deep), var(--amber-main), var(--cream-deep));
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, var(--yellow-main), var(--yellow-blaze), var(--yellow-main));
     }
     .stat-cell:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 24px var(--shadow-deep);
+        box-shadow: 0 8px 28px rgba(255,208,0,0.22);
         border-color: var(--border-mid);
     }
     .stat-value {
@@ -186,7 +186,7 @@ st.markdown("""
     .stat-num, .stat-unit {
         font-size: 42px !important;
         font-weight: 700;
-        color: var(--amber-deep);
+        color: var(--yellow-deep);
         letter-spacing: -1px;
     }
     .stat-label {
@@ -198,11 +198,11 @@ st.markdown("""
     .section-header {
         display: flex; align-items: center; gap: 16px;
         margin: 40px 0 24px 0; padding-bottom: 14px;
-        border-bottom: 1.5px solid var(--border-amber);
+        border-bottom: 1.5px solid var(--border-yellow);
     }
     .section-number {
-        font-size: 12px; font-weight: bold; color: var(--amber-main);
-        letter-spacing: 2px; background: rgba(212,150,28,0.11);
+        font-size: 12px; font-weight: bold; color: var(--yellow-deep);
+        letter-spacing: 2px; background: rgba(255,208,0,0.18);
         padding: 4px 10px; border-radius: 2px;
     }
     .section-title {
@@ -211,40 +211,40 @@ st.markdown("""
     }
     .section-line {
         flex: 1; height: 1px;
-        background: linear-gradient(90deg, var(--border-amber), transparent);
+        background: linear-gradient(90deg, var(--border-yellow), transparent);
     }
 
     /* ── TARJETAS DE MUESTRAS ── */
     .sample-header {
         display: flex; align-items: center; gap: 14px; padding: 16px 24px;
-        background: linear-gradient(90deg, rgba(255,255,255,0.96), rgba(253,249,238,0.82));
-        border: 1.5px solid var(--border-amber); border-bottom: none;
+        background: linear-gradient(90deg, rgba(255,255,255,0.97), rgba(255,252,232,0.85));
+        border: 1.5px solid var(--border-yellow); border-bottom: none;
         border-radius: 8px 8px 0 0; margin-top: 28px;
     }
     .sample-dot {
         width: 10px; height: 10px; border-radius: 50%;
-        background: var(--amber-main);
-        box-shadow: 0 0 10px rgba(212,150,28,0.40); flex-shrink: 0;
+        background: var(--yellow-blaze);
+        box-shadow: 0 0 12px rgba(255,208,0,0.60); flex-shrink: 0;
     }
     .sample-name {
         font-size: 14px; font-weight: 600;
         color: var(--text-primary); letter-spacing: 1px;
     }
     .sample-body {
-        border: 1.5px solid var(--border-amber); border-top: none;
+        border: 1.5px solid var(--border-yellow); border-top: none;
         border-radius: 0 0 8px 8px; padding: 28px;
-        background: rgba(255,255,255,0.90); backdrop-filter: blur(4px);
+        background: rgba(255,255,255,0.92); backdrop-filter: blur(4px);
         box-shadow: 0 4px 24px var(--shadow-warm);
     }
     .level-badge {
         display: inline-flex; align-items: center; gap: 8px;
         font-size: 11px; font-weight: 600; letter-spacing: 2px;
-        color: var(--amber-darkest); text-transform: uppercase;
-        padding: 6px 16px; border: 1px solid var(--border-amber);
-        border-radius: 2px; background: rgba(212,150,28,0.09);
+        color: var(--yellow-darkest); text-transform: uppercase;
+        padding: 6px 16px; border: 1px solid var(--border-yellow);
+        border-radius: 2px; background: rgba(255,208,0,0.14);
         margin: 16px 0 14px 0;
     }
-    .level-badge::before { content: '⬡'; font-size: 12px; color: var(--amber-main); }
+    .level-badge::before { content: '⬡'; font-size: 12px; color: var(--yellow-main); }
 
     /* ── RESULTADOS ── */
     .resultado-base {
@@ -252,20 +252,20 @@ st.markdown("""
         display: flex; align-items: center; justify-content: space-between; border: 1.5px solid;
     }
     .resultado-real {
-        background: linear-gradient(135deg, var(--green-bg), rgba(255,255,255,0.96));
+        background: linear-gradient(135deg, var(--green-bg), rgba(255,255,255,0.97));
         border-color: var(--green-border);
     }
     .resultado-real .res-icon { color: #2E7D40; }
     .resultado-adulterada {
-        background: linear-gradient(135deg, var(--red-bg), rgba(255,255,255,0.96));
+        background: linear-gradient(135deg, var(--red-bg), rgba(255,255,255,0.97));
         border-color: var(--red-border);
     }
-    .resultado-adulterada .res-icon { color: #A83228; }
+    .resultado-adulterada .res-icon { color: #C03820; }
     .resultado-mezcla {
-        background: linear-gradient(135deg, rgba(212,150,28,0.09), rgba(255,255,255,0.96));
-        border-color: var(--border-amber);
+        background: linear-gradient(135deg, rgba(255,208,0,0.12), rgba(255,255,255,0.97));
+        border-color: var(--border-yellow);
     }
-    .resultado-mezcla .res-icon { color: var(--amber-main); }
+    .resultado-mezcla .res-icon { color: var(--yellow-main); }
     .res-label {
         font-size: 11px; font-weight: 600; letter-spacing: 2px;
         color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px;
@@ -275,7 +275,7 @@ st.markdown("""
 
     /* ── PROBABILIDADES ── */
     .prob-container {
-        background: #FFFFFF; border: 1.5px solid var(--border-amber);
+        background: #FFFFFF; border: 1.5px solid var(--border-yellow);
         border-radius: 6px; padding: 22px; height: 100%;
         box-shadow: 0 2px 12px var(--shadow-warm);
     }
@@ -292,7 +292,7 @@ st.markdown("""
     .prob-pct { font-size: 15px; font-weight: 700; }
     .prob-track {
         background: var(--cream-mid); border-radius: 3px;
-        height: 5px; width: 100%; overflow: hidden;
+        height: 6px; width: 100%; overflow: hidden;
     }
 
     /* ── GEO CARDS ── */
@@ -303,13 +303,13 @@ st.markdown("""
         box-shadow: 0 2px 12px var(--shadow-warm);
     }
     .geo-card.active {
-        border-color: var(--amber-main);
-        background: linear-gradient(160deg, #FFFFFF, rgba(245,236,200,0.30));
-        box-shadow: 0 6px 28px rgba(170,116,8,0.14);
+        border-color: var(--yellow-blaze);
+        background: linear-gradient(160deg, #FFFFFF, rgba(255,240,100,0.12));
+        box-shadow: 0 6px 28px rgba(255,208,0,0.22);
     }
     .geo-card.active::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-        background: linear-gradient(90deg, var(--cream-deep), var(--amber-main), var(--cream-deep));
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, var(--yellow-main), var(--yellow-blaze), var(--yellow-main));
     }
     .geo-card.inactive { opacity: 0.38; }
     .geo-region {
@@ -319,28 +319,25 @@ st.markdown("""
     .geo-pct { font-size: 52px !important; font-weight: 700; line-height: 1; margin-bottom: 6px; }
     .geo-winner-tag {
         font-size: 10px; font-weight: 600; letter-spacing: 2px;
-        color: var(--amber-deep); text-transform: uppercase; margin-top: 10px;
+        color: var(--yellow-deep); text-transform: uppercase; margin-top: 10px;
     }
 
     .sample-divider {
         height: 1px;
-        background: linear-gradient(90deg, transparent, var(--border-amber), transparent);
+        background: linear-gradient(90deg, transparent, var(--border-yellow), transparent);
         margin: 48px 0;
     }
 
     /* ── FOOTER ── */
     .footer {
         margin-top: 80px; padding: 28px 0 16px 0;
-        border-top: 1.5px solid var(--border-amber);
+        border-top: 1.5px solid var(--border-yellow);
         display: flex; justify-content: space-between; align-items: center;
         flex-wrap: wrap; gap: 12px;
     }
-    .footer-left {
-        font-size: 11px; font-weight: 600;
-        color: var(--text-muted); letter-spacing: 1px;
-    }
+    .footer-left { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; }
     .footer-right { font-size: 16px; font-weight: 600; color: var(--text-muted); }
-    .footer-gold { color: var(--amber-deep); font-weight: 700; }
+    .footer-gold { color: var(--yellow-deep); font-weight: 700; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -351,8 +348,8 @@ T_MIN, T_MAX, N_PTS = -35.0, 195.0, 1000
 T_GRILLA = np.linspace(T_MIN, T_MAX, N_PTS)
 CLASES_AUTH = ["Miel auténtica", "Jarabe comercial", "Mezcla de azúcares"]
 CLASES_GEO  = ["Eje Cafetero", "Orinoquía"]
-COLORES_AUTH = ["#2E7D40", "#A83228", "#D4961C"]
-COLORES_GEO  = ["#D4961C", "#D4961C"]
+COLORES_AUTH = ["#2E7D40", "#C03820", "#C87800"]
+COLORES_GEO  = ["#C87800", "#C87800"]
 
 # ═══════════════════════════════════════════════════════════════════
 #  MODELOS
@@ -427,32 +424,32 @@ def extraer_features(dsc_curve, T=T_GRILLA):
     return feats
 
 def graficar_termograma(dsc_curve, nombre, color_linea):
-    bg      = "#FDF9EE"
-    grid_c  = "#E8D898"
-    tick_c  = "#8A6030"
-    label_c = "#4A2E08"
+    bg      = "#FFFCE8"
+    grid_c  = "#FFE060"
+    tick_c  = "#906030"
+    label_c = "#3A2000"
 
     fig, ax = plt.subplots(figsize=(11, 3.8), facecolor=bg)
     ax.set_facecolor(bg)
     fig.patch.set_facecolor(bg)
 
-    ax.axvspan(-30,  30, alpha=0.08, color="#5580AA", zorder=0)
-    ax.axvspan( 30, 100, alpha=0.07, color="#D4961C", zorder=0)
-    ax.axvspan(100, 190, alpha=0.07, color="#AA5020", zorder=0)
+    ax.axvspan(-30,  30, alpha=0.07, color="#5580AA", zorder=0)
+    ax.axvspan( 30, 100, alpha=0.08, color="#F5A800", zorder=0)
+    ax.axvspan(100, 190, alpha=0.07, color="#C05020", zorder=0)
 
     for x_line in [-30, 30, 100, 190]:
         ax.axvline(x_line, color=grid_c, linewidth=0.6, linestyle=":", zorder=1)
 
-    ax.axhline(0, color="#D4B870", linewidth=0.9, linestyle="-", zorder=2)
-    ax.plot(T_GRILLA, dsc_curve, color=color_linea, linewidth=2.0, zorder=5, solid_capstyle="round")
+    ax.axhline(0, color="#FFD060", linewidth=0.9, linestyle="-", zorder=2)
+    ax.plot(T_GRILLA, dsc_curve, color=color_linea, linewidth=2.2, zorder=5, solid_capstyle="round")
 
-    ax.fill_between(T_GRILLA, dsc_curve, where=dsc_curve < 0,  alpha=0.14, color=color_linea, zorder=3)
-    ax.fill_between(T_GRILLA, dsc_curve, where=dsc_curve >= 0, alpha=0.06, color=color_linea, zorder=3)
+    ax.fill_between(T_GRILLA, dsc_curve, where=dsc_curve < 0,  alpha=0.16, color=color_linea, zorder=3)
+    ax.fill_between(T_GRILLA, dsc_curve, where=dsc_curve >= 0, alpha=0.07, color=color_linea, zorder=3)
 
     for x_c, lbl, c_lbl in [
-        (  0, "FUSIÓN",        "#3A6888"),
-        ( 65, "TRANSICIÓN",    "#AA7408"),
-        (145, "CARAMELIZACIÓN","#AA5020"),
+        (  0, "FUSIÓN",        "#3A70A0"),
+        ( 65, "TRANSICIÓN",    "#A07800"),
+        (145, "CARAMELIZACIÓN","#A04800"),
     ]:
         ax.text(x_c, 1.0, lbl, ha="center", va="top", fontsize=7.5, color=c_lbl, alpha=0.65,
                 fontfamily="monospace", fontweight="bold",
@@ -464,7 +461,7 @@ def graficar_termograma(dsc_curve, nombre, color_linea):
     for spine in ax.spines.values():
         spine.set_color(grid_c)
         spine.set_linewidth(0.8)
-    ax.grid(True, color=grid_c, linewidth=0.4, linestyle="-", alpha=0.6)
+    ax.grid(True, color=grid_c, linewidth=0.4, linestyle="-", alpha=0.55)
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(10))
     ax.tick_params(which="minor", length=2, color=grid_c)
     ax.set_xlim(-30, 190)
@@ -476,11 +473,11 @@ def graficar_termograma(dsc_curve, nombre, color_linea):
 # ═══════════════════════════════════════════════════════════════════
 with st.sidebar:
     st.markdown("""
-    <div style="padding:28px 0 20px 0; text-align:center; border-bottom:1px solid rgba(212,150,28,0.15); margin-bottom:24px;">
-        <div class="logo-brand" style="font-size:28px; font-weight:900; color:#E8B830; letter-spacing:-0.5px;">
-            Honey<span style="font-style:italic; color:#F0DFB0;">Check</span>
+    <div style="padding:28px 0 20px 0; text-align:center; border-bottom:1px solid rgba(255,208,0,0.20); margin-bottom:24px;">
+        <div class="logo-brand" style="font-size:28px; font-weight:900; color:#FFD000; letter-spacing:-0.5px;">
+            Honey<span style="font-style:italic; color:#FFE85A;">Check</span>
         </div>
-        <div style="font-size:12px; font-weight:600; letter-spacing:3px; color:#906830; text-transform:uppercase; margin-top:4px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:3px; color:#C89040; text-transform:uppercase; margin-top:4px;">
             Sistema Jerárquico V2.0
         </div>
     </div>
@@ -488,51 +485,51 @@ with st.sidebar:
 
     st.markdown("""
     <div style="margin-bottom:28px;">
-        <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#906830; text-transform:uppercase; margin-bottom:14px;">
+        <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#C89040; text-transform:uppercase; margin-bottom:14px;">
             Arquitectura
         </div>
-        <div style="padding:14px 16px; background:#1C1200; border-left:3px solid #E8B830; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.30);">
-            <div style="font-size:11px; font-weight:700; color:#906830; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 01</div>
-            <div style="font-size:18px; font-weight:700; color:#F0DFB0;">Autenticidad</div>
-            <div style="font-size:13px; font-weight:600; color:#C8A870; margin-top:3px;">SVM Lineal · Acc 98.39%</div>
+        <div style="padding:14px 16px; background:#8C5A10; border-left:3px solid #FFD000; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 14px rgba(0,0,0,0.20);">
+            <div style="font-size:11px; font-weight:700; color:#C89040; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 01</div>
+            <div style="font-size:18px; font-weight:700; color:#FFF3B0;">Autenticidad</div>
+            <div style="font-size:13px; font-weight:600; color:#FFD88A; margin-top:3px;">SVM Lineal · Acc 98.39%</div>
         </div>
-        <div style="padding:14px 16px; background:#1C1200; border-left:3px solid #D4961C; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.30);">
-            <div style="font-size:11px; font-weight:700; color:#906830; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 02</div>
-            <div style="font-size:18px; font-weight:700; color:#F0DFB0;">Origen Geográfico</div>
-            <div style="font-size:13px; font-weight:600; color:#C8A870; margin-top:3px;">SVM+PCA · Acc 82.00%</div>
+        <div style="padding:14px 16px; background:#8C5A10; border-left:3px solid #F5A800; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 14px rgba(0,0,0,0.20);">
+            <div style="font-size:11px; font-weight:700; color:#C89040; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px;">NIVEL 02</div>
+            <div style="font-size:18px; font-weight:700; color:#FFF3B0;">Origen Geográfico</div>
+            <div style="font-size:13px; font-weight:600; color:#FFD88A; margin-top:3px;">SVM+PCA · Acc 82.00%</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""<div style="margin-bottom:20px;">
-        <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#906830; text-transform:uppercase; margin-bottom:12px;">Clases detectables</div>
+        <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#C89040; text-transform:uppercase; margin-bottom:12px;">Clases detectables</div>
     """, unsafe_allow_html=True)
 
     clases_colores = [
-        ("Miel auténtica",    "#0A1E0C", "#80D890"),
-        ("Jarabe comercial",  "#1E0808", "#F09090"),
-        ("Mezcla de azúcares","#1E1400", "#F0C050"),
+        ("Miel auténtica",    "#0A2010", "#60E080"),
+        ("Jarabe comercial",  "#220808", "#FF8080"),
+        ("Mezcla de azúcares","#1A1400", "#F0C050"),
     ]
     for cls, bg_c, txt_c in clases_colores:
         st.markdown(f"""
-        <div style="background:{bg_c}; border:1px solid {txt_c}44; padding:12px 16px; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 10px rgba(0,0,0,0.25);">
+        <div style="background:{bg_c}; border:1px solid {txt_c}44; padding:12px 16px; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 10px rgba(0,0,0,0.22);">
             <div style="font-size:16px; font-weight:700; color:{txt_c}; letter-spacing:0.5px;">{cls}</div>
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""<div style="margin-top:20px; margin-bottom:20px;">
-        <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#906830; text-transform:uppercase; margin-bottom:12px;">Orígenes geográficos</div>
+        <div style="font-size:18px; font-weight:700; letter-spacing:2px; color:#C89040; text-transform:uppercase; margin-bottom:12px;">Orígenes geográficos</div>
     """, unsafe_allow_html=True)
     for cls in CLASES_GEO:
         st.markdown(f"""
-        <div style="background:#1C1200; border:1px solid rgba(212,150,28,0.28); padding:12px 16px; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 10px rgba(0,0,0,0.22);">
-            <div style="font-size:16px; font-weight:700; color:#C8A060; letter-spacing:0.5px;">{cls}</div>
+        <div style="background:#8C5A10; border:1px solid rgba(255,208,0,0.30); padding:12px 16px; margin-bottom:8px; border-radius:4px; box-shadow:0 4px 10px rgba(0,0,0,0.20);">
+            <div style="font-size:16px; font-weight:700; color:#FFD000; letter-spacing:0.5px;">{cls}</div>
         </div>""", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""
-    <div style="margin-top:auto; padding-top:20px; border-top:1px solid rgba(212,150,28,0.12);">
-        <div style="font-size:13px; letter-spacing:1px; color:#604820; text-transform:uppercase; line-height:1.6; font-weight:700;">
+    <div style="margin-top:auto; padding-top:20px; border-top:1px solid rgba(255,208,0,0.14);">
+        <div style="font-size:13px; letter-spacing:1px; color:#7A5020; text-transform:uppercase; line-height:1.6; font-weight:700;">
             Universidad del Quindío<br>Grupo de Investigación<br>Plaguicidas y Salud
         </div>
     </div>
@@ -542,22 +539,22 @@ with st.sidebar:
 #  HERO
 # ═══════════════════════════════════════════════════════════════════
 st.markdown("""
-<div style="position:relative; width:100%; min-height:420px; overflow:hidden; border-radius:12px; display:flex; align-items:center; border:1px solid rgba(212,150,28,0.18); box-shadow:0 4px 24px rgba(46,26,0,0.09); margin-bottom:2rem;">
+<div style="position:relative; width:100%; min-height:420px; overflow:hidden; border-radius:12px; display:flex; align-items:center; border:1px solid rgba(255,208,0,0.30); box-shadow:0 4px 28px rgba(42,20,0,0.10); margin-bottom:2rem;">
 
-<div style="position:absolute; inset:0; background:#FEFCF5;
+<div style="position:absolute; inset:0; background:#FFFCE8;
   background-image:
-    radial-gradient(ellipse 65% 80% at 85% 50%, rgba(242,200,74,0.22) 0%, transparent 70%),
-    radial-gradient(ellipse 45% 60% at 10% 30%, rgba(254,252,245,0.95) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 50% at 50% 90%, rgba(212,150,28,0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 65% 80% at 85% 50%, rgba(255,208,0,0.28) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 60% at 10% 30%, rgba(255,252,232,0.95) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 50% at 50% 90%, rgba(245,168,0,0.10) 0%, transparent 60%);
 "></div>
 
-<div style="position:absolute; left:0; top:0; bottom:0; width:4px;
-  background:linear-gradient(180deg, transparent, #F2C84A, #D4961C, transparent); z-index:6;"></div>
+<div style="position:absolute; left:0; top:0; bottom:0; width:5px;
+  background:linear-gradient(180deg, transparent, #FFD000, #F5A800, #FFD000, transparent); z-index:6;"></div>
 
 <div style="position:absolute; right:60px; top:50%; transform:translateY(-50%);
-  width:340px; height:340px; opacity:0.14; pointer-events:none; z-index:5;">
+  width:340px; height:340px; opacity:0.16; pointer-events:none; z-index:5;">
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
-  stroke="#D4961C" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"
+  stroke="#F5A800" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"
   style="width:100%; height:100%;">
 <path d="M92,60 Q80,45 92,35 M108,60 Q120,45 108,35" />
 <path d="M88,72 A 12 12 0 0 1 112,72" />
@@ -576,20 +573,20 @@ st.markdown("""
 </div>
 
 <div style="position:relative; z-index:10; padding:52px 56px; width:100%; max-width:680px;">
-<div style="font-size:15px; font-weight:700; letter-spacing:2px; color:#D4961C; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
+<div style="font-size:15px; font-weight:700; letter-spacing:2px; color:#C87800; text-transform:uppercase; margin-bottom:18px; opacity:0.9;">
 Calorimetría diferencial de barrido · Machine Learning
 </div>
-<div class="logo-brand" style="font-size:clamp(52px,6vw,84px); font-weight:900; line-height:0.90; color:#2E1A00; letter-spacing:-1.5px; margin:0 0 6px 0;">
-Honey<span style="color:#D4961C; font-style:italic;">Check</span>
+<div class="logo-brand" style="font-size:clamp(52px,6vw,84px); font-weight:900; line-height:0.90; color:#2A1400; letter-spacing:-1.5px; margin:0 0 6px 0;">
+Honey<span style="color:#F5A800; font-style:italic;">Check</span>
 </div>
-<div style="width:72px; height:2px; margin:22px 0; background:linear-gradient(90deg,#F2C84A,#D4961C,transparent); border-radius:1px;"></div>
-<p style="font-size:20px; font-weight:600; color:#4A2E08; margin:0 0 30px 0; max-width:500px; line-height:1.55;">
+<div style="width:72px; height:3px; margin:22px 0; background:linear-gradient(90deg,#FFD000,#F5A800,transparent); border-radius:1px;"></div>
+<p style="font-size:20px; font-weight:600; color:#4A2800; margin:0 0 30px 0; max-width:500px; line-height:1.55;">
 Detección de adulteración y trazabilidad geográfica de mieles colombianas mediante análisis DSC y modelos de clasificación supervisada.
 </p>
 <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2E08; border:1px solid rgba(212,150,28,0.38); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.72); text-transform:uppercase;">SISTEMA JERÁRQUICO V2.0</span>
-<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2E08; border:1px solid rgba(212,150,28,0.38); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.72); text-transform:uppercase;">UNIVERSIDAD DEL QUINDÍO</span>
-<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2E08; border:1px solid rgba(212,150,28,0.38); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.72); text-transform:uppercase;">NETZSCH DSC 214 POLYMA</span>
+<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">SISTEMA JERÁRQUICO V2.0</span>
+<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">UNIVERSIDAD DEL QUINDÍO</span>
+<span style="font-size:13px; font-weight:700; letter-spacing:1px; color:#4A2800; border:1px solid rgba(255,208,0,0.55); padding:7px 16px; border-radius:2px; background:rgba(255,255,255,0.75); text-transform:uppercase;">NETZSCH DSC 214 POLYMA</span>
 </div>
 </div>
 </div>
@@ -656,10 +653,10 @@ archivos = st.file_uploader(
 
 if not archivos:
     st.markdown("""
-    <div style="padding:52px; text-align:center; border:1.5px dashed rgba(212,150,28,0.22); border-radius:8px; background:rgba(255,255,255,0.62); margin-top:16px;">
-        <div style="font-size:44px; margin-bottom:18px; opacity:0.32; color:#D4961C;">⬡</div>
-        <div style="font-size:24px; font-weight:700; color:#8A6030; margin-bottom:10px;">Sistema en espera</div>
-        <div style="font-size:12px; font-weight:600; letter-spacing:2.5px; color:#C8A870; text-transform:uppercase;">
+    <div style="padding:52px; text-align:center; border:1.5px dashed rgba(255,208,0,0.30); border-radius:8px; background:rgba(255,255,255,0.65); margin-top:16px;">
+        <div style="font-size:44px; margin-bottom:18px; opacity:0.38; color:#F5A800;">⬡</div>
+        <div style="font-size:24px; font-weight:700; color:#906030; margin-bottom:10px;">Sistema en espera</div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:2.5px; color:#C8A050; text-transform:uppercase;">
             Seleccione o arrastre archivos .txt para iniciar el procesamiento
         </div>
     </div>
@@ -690,7 +687,7 @@ for i, archivo in enumerate(archivos):
     <div class="sample-header">
         <div class="sample-dot"></div>
         <div class="sample-name">{archivo.name.upper()}</div>
-        <div style="margin-left:auto; font-size:11px; font-weight:600; color:#C8A870; letter-spacing:2px; text-transform:uppercase;">
+        <div style="margin-left:auto; font-size:11px; font-weight:600; color:#C8A050; letter-spacing:2px; text-transform:uppercase;">
             MUESTRA {str(i+1).zfill(2)}
         </div>
     </div>
@@ -712,13 +709,12 @@ for i, archivo in enumerate(archivos):
 
         if m_auth is None:
             st.info("Modelos no disponibles — mostrando solo el termograma.")
-            fig = graficar_termograma(dsc_interp, archivo.name, "#D4961C")
+            fig = graficar_termograma(dsc_interp, archivo.name, "#F5A800")
             st.pyplot(fig, use_container_width=True)
             plt.close()
             st.markdown("</div>", unsafe_allow_html=True)
             continue
 
-        # ── NIVEL 1: Autenticidad ────────────────────────────────
         feats  = extraer_features(dsc_interp)
         X_feat = sc_auth.transform(np.array(list(feats.values())).reshape(1, -1))
         pred   = m_auth.predict(X_feat)[0]
@@ -760,7 +756,6 @@ for i, archivo in enumerate(archivos):
             bars_html += '</div>'
             st.markdown(bars_html, unsafe_allow_html=True)
 
-        # ── NIVEL 2: Origen geográfico ───────────────────────────
         if pred == 0:
             st.markdown('<div style="height:20px;"></div>', unsafe_allow_html=True)
             st.markdown('<div class="level-badge">FASE 02 — Trazabilidad Geográfica</div>', unsafe_allow_html=True)
