@@ -849,23 +849,4 @@ st.markdown("""
             gap: 8px !important;
         }
     }
-
-    /* ── 📱 ADAPTACIÓN PARA CELULARES MUY PEQUEÑOS ── */
-    @media screen and (max-width: 480px) {
-        /* Las tarjetas de estadísticas pasan a 1 sola columna vertical */
-        .stats-row {
-            grid-template-columns: 1fr !important;
-        }
-        /* Reducir un poco los números gigantes para que no se corten */
-        .stat-num {
-            font-size: 34px !important;
-        }
-        .geo-pct {
-            font-size: 40px !important;
-        }
-        div[style*="display:flex; gap:12px; flex-wrap:wrap; align-items:center;"] span {
-            font-size: 11px !important;
-            padding: 6px 12px !important;
-        }
-    }
 """, unsafe_allow_html=True)
