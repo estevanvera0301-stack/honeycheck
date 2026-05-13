@@ -799,4 +799,73 @@ st.markdown("""
     <div class="footer-left">HONEYCHECK · SISTEMA JERÁRQUICO V2.0 · © 2024</div>
     <div class="footer-right">Universidad del Quindío <span class="footer-gold">— Grupo Plaguicidas y Salud</span></div>
 </div>
+/* ── 📱 ADAPTACIÓN PARA DISPOSITIVOS MÓVILES (RESPONSIVE) ── */
+    @media screen and (max-width: 768px) {
+        /* 1. Reducir márgenes del contenedor principal */
+        .block-container {
+            padding-top: 1.5rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+
+        /* 2. Tarjetas de Estadísticas: pasar de 4 columnas a 2 */
+        .stats-row {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            margin: 24px 0 !important;
+        }
+
+        /* 3. Sección principal (Hero): Ajustar padding, textos y la abeja de fondo */
+        div[style*="padding:52px 56px"] {
+            padding: 32px 20px !important;
+        }
+        div[style*="width:340px; height:340px;"] {
+            width: 180px !important;
+            height: 180px !important;
+            right: -10px !important;
+            opacity: 0.10 !important;
+        }
+        .logo-brand {
+            font-size: 48px !important; 
+        }
+
+        /* 4. Tarjetas de Resultados y Muestras */
+        .sample-header, .sample-body {
+            padding: 16px !important;
+        }
+        .resultado-base {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 12px !important;
+        }
+        .res-icon {
+            margin-top: 8px;
+        }
+
+        /* 5. Acomodar el pie de página (Footer) */
+        .footer {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 8px !important;
+        }
+    }
+
+    /* ── 📱 ADAPTACIÓN PARA CELULARES MUY PEQUEÑOS ── */
+    @media screen and (max-width: 480px) {
+        /* Las tarjetas de estadísticas pasan a 1 sola columna vertical */
+        .stats-row {
+            grid-template-columns: 1fr !important;
+        }
+        /* Reducir un poco los números gigantes para que no se corten */
+        .stat-num {
+            font-size: 34px !important;
+        }
+        .geo-pct {
+            font-size: 40px !important;
+        }
+        div[style*="display:flex; gap:12px; flex-wrap:wrap; align-items:center;"] span {
+            font-size: 11px !important;
+            padding: 6px 12px !important;
+        }
+    }
 """, unsafe_allow_html=True)
