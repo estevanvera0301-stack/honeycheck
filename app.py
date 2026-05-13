@@ -610,8 +610,8 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     clases_colores = [
-        ("Miel auténtica",   "#D6F0DA", "#1B6B30"),
-        ("Jarabe comercial",  "#FAEEE8", "#C03820"),
+        ("Miel auténtica",   "#82C492", "#0A3A16"),
+        ("Jarabe comercial",  "#C87868", "#580C04"),
         ("Mezcla de azúcares","#C49040", "#4A2400"),
     ]
     for cls, bg_c, txt_c in clases_colores:
