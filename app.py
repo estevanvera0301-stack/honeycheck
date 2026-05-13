@@ -610,9 +610,9 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     clases_colores = [
-        ("Miel auténtica",  "#EAF7EC", "#2E7D40"),
-        ("Jarabe comercial",  "#FAEEE8", "#C03820"),
-        ("Mezcla de azúcares","#FFF8E0", "#C87800"),
+        ("Miel auténtica",  "#2E7D40", "#2E7D40"),
+        ("Jarabe comercial",  "#C03820", "#C03820"),
+        ("Mezcla de azúcares","#C87800", "#C87800"),
     ]
     for cls, bg_c, txt_c in clases_colores:
         st.markdown(f"""
